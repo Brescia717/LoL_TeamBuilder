@@ -47,8 +47,8 @@ gem 'mandrill-api'
 gem 'therubyracer', platforms: :ruby # or any other runtime
 gem 'less-rails'
 gem 'autoprefixer-rails'
-gem 'semantic-ui-rails'
-gem 'semantic-ui-sass', '~> 0.16.1.0'
+# gem 'semantic-ui-rails'
+# gem 'semantic-ui-sass', '~> 0.16.1.0'
 
 group :test do
   gem 'coveralls', require: false

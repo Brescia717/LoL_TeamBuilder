@@ -208,11 +208,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    semantic-ui-rails (0.18.0)
-      autoprefixer-rails
-      less-rails
-    semantic-ui-sass (0.16.1.0)
-      sass (~> 3.2)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simplecov (0.9.1)
@@ -280,8 +275,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  semantic-ui-rails
-  semantic-ui-sass (~> 0.16.1.0)
   shoulda-matchers
   spring
   therubyracer

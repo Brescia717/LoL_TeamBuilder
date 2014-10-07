@@ -1,0 +1,33 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to 'LoLTeamBuilder', root_path, class: "logo" %> </h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+    <li><%= link_to "Home", root_path, class: "btn success" %></li>
+    <li><%= link_to 'Find Build', builds_path %> </li>
+
+      <% if current_user %>
+        <li class="has-dropdown">
+          <%= link_to "Profile", user_path(current_user), class: "btn success" %>
+          <ul class="dropdown">
+            <li><%= link_to "Update", edit_user_registration_path(current_user), class: "btn success" %></li>
+          </ul>
+        </li>
+        <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn success" %></li>
+
+        <% if current_user.admin? %>
+          <li><%= link_to "Edit Builds", admin_builds_path, class: "btn success" %></li>
+        <% end %>
+
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path, class: "btn success" %></li>
+        <li><%= link_to "Log In", new_user_session_path, class: "btn success" %></li>
+      <% end %>
+    </ul>
+  </section>
+
+</nav>
