@@ -1,0 +1,30 @@
+<h1>Create a Build</h1>
+
+<div class="row information">
+  <%= form_for @build do |f| %>
+
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </p>
+
+    <p>
+      <%= f.label :champion %><br>
+      <%= f.text_field :champion %>
+    </p>
+
+    <p>
+      <%= f.label :about %><br>
+      <%= f.text_field :about %>
+    </p>
+    <p>
+      <%= f.label :tips %><br>
+      <%= f.text_field :tips %>
+    </p>
+
+    <%= f.submit 'Create Build', class: "button" %>
+
+  <% end %>
+</div>
+
+<%= link_to "Back", root_path %>
