@@ -10,10 +10,11 @@ class BuildsController < ApplicationController
 
   def show
     @build = Build.find(params[:id])
+    # @user = User.find(params[:user_id]) ??
     @review = Review.new
     @reviews = @build.reviews.with_score.includes(:votes)
-    # @neighborhood_photo = BuildPhoto.new
-    # @data = ZillowAPI.new(@build)
+    # @build_photo = BuildPhoto.new
+    # @data = LoLAPI.new(@build)
   end
 
   def new
@@ -24,7 +25,7 @@ class BuildsController < ApplicationController
     @build = Build.new(build_params)
 
     if @build.save
-      redirect_to @build
+      redirect_to builds_path ## This will be redirect_to @build
     else
       render 'new'
     end
@@ -32,7 +33,6 @@ class BuildsController < ApplicationController
 
   def update
     @build = Build.find(params[:id])
-
 
     if @build.update(build_params)
       # flash[:success] = "You have successfully updated the build picture."
@@ -44,8 +44,6 @@ class BuildsController < ApplicationController
 
   private
   def build_params
-    params.require(:build).permit(:champion, :about, :items, :item_desc,
-                                  :masteries, :masteries_desc, :runes,
-                                  :runes_desc, :tips)
+    params.require(:build).permit(:title, :champion, :about, :tips)
   end
 end
