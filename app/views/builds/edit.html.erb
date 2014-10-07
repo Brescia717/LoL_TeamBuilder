@@ -1,0 +1,35 @@
+<div class="row information">
+  <h1>Edit <%= @build.title %></h1>
+
+  <% if current_user %>
+    <%= form_for @build do |f| %>
+     <% if @build.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@build.errors.count, "error") %> prohibited
+            this build from being saved:</h2>
+          <ul>
+            <% @build.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end%>
+       <p>
+        <%= f.label :title  %><br>
+        <%= f.text_field :title %>
+      </p>
+
+      <p>
+        <%= f.label :about  %><br>
+        <%= f.text_field :about %>
+      </p>
+
+      <p>
+        <%= f.label :tips  %><br>
+        <%= f.text_field :tips %>
+      </p>
+
+      <%= f.submit "Update Build", class: "button" %>
+    <% end %>
+  <% end %>
+</div>
