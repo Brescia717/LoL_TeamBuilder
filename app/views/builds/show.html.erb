@@ -10,4 +10,8 @@
   <p>
     <%= @build.tips %>
   </p>
+
+  <% if current_user.id == @build.user_id %>
+  <%= link_to "Edit", edit_build_path(@build), class: "button tiny edit" %>
+  <% end %>
 </div>

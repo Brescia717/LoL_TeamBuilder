@@ -3,6 +3,7 @@ class Build < ActiveRecord::Base
   validates :champion, presence: true
   validates :about, presence: true
   validates :tips, presence: true
+  validates :user_id, presence: true
 
   belongs_to :user
   has_many :reviews
