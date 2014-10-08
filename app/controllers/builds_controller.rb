@@ -4,7 +4,7 @@ class BuildsController < ApplicationController
       @builds = Build.search(params[:search]).order(:name).page params[:page]
     else
       @builds = Build.all
-      # @builds = Build.order(:id).page params[:page]  ## This was default from Mytopia
+      # @builds = Build.order(:champion).page params[:page]  ## This was default from Mytopia
     end
   end
 
@@ -27,6 +27,7 @@ class BuildsController < ApplicationController
     if @build.save
       redirect_to builds_path ## This will be redirect_to @build
     else
+      flash[:notice] = "You need to sign in to create a build."
       render 'new'
     end
   end
@@ -37,6 +38,7 @@ class BuildsController < ApplicationController
 
   def update
     @build = Build.find(params[:id])
+    @build.user = current_user
 
     if @build.update(build_params)
       flash[:success] = "You have successfully updated your build."
@@ -48,6 +50,11 @@ class BuildsController < ApplicationController
   end
 
   def destroy
+    @build = Build.find(params[:id])
+    if @build.destroy
+      flash[:notice] = "Your build has been deleted."
+      redirect_to root_path
+    end
   end
 
   private

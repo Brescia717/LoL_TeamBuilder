@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show, :index, :edit, :update]
-  resources :builds, except: [:destroy] do
+  resources :users, only: [:show, :index, :edit, :update,]
+  resources :builds do
     # resources :neighborhood_photos, except: [:destroy]
     resources :reviews, except: [:index] do
       resources :comments, except: [:index, :show]

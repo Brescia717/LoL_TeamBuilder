@@ -11,7 +11,88 @@
     <%= @build.tips %>
   </p>
 
-  <% if current_user.id == @build.user_id %>
-  <%= link_to "Edit", edit_build_path(@build), class: "button tiny edit" %>
+  <% if current_user == @build.user %>
+    <%= link_to "Edit", edit_build_path(@build), class: "button tiny edit" %>
+    <%= link_to "Delete", build_path(@build),
+        method: :delete,
+        data: {confirm: 'Are you sure you want to delete this build?'},
+        class: "button tiny delete" %>
   <% end %>
+</div>
+
+<div class="row">
+    <div class="large-offset-1 large-10 columns reviews">
+      <% if @reviews %>
+      <h2> All Reviews For <%= @build.title %> </h2>
+        <% @reviews.each do |review| %>
+          <div class="title">
+            <h3>
+              <button class="tiny">
+                <%= review.score %> Upvotes
+              </button>
+              <%= link_to review.title, build_review_path(@build, review) %>
+            </h3>
+            <p>
+              <em>Written by: <%= link_to review.user.username, user_path(review.user) %></em>
+            </p>
+          </div>
+
+          <article class="review-body">
+            <%= review.body %>
+
+            <% if review.owner?(current_user) %>
+              <%= link_to 'Edit', edit_build_review_path(@build, review), class: "button tiny edit" %>
+              <%= link_to 'Delete', build_review_path(@build, review), method: :delete, data: {confirm: 'Are you sure you want to delete review?'}, class: "button tiny delete" %>
+            <% end %>
+
+            <% if review.upvoted?(current_user) %>
+              <%= link_to 'Downvote', build_review_downvote_path(@build, review), method: :post, class: "downvote button primary tiny" %>
+            <% else %>
+
+              <%= link_to 'Upvote', build_review_upvote_path(@build, review), method: :post, class: "upvote button alert tiny" %>
+            <% end %>
+          </article>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-offset-1 large-10 columns write">
+    <h2>Write A Review For <%=@build.title %></h2>
+
+    <% if current_user %>
+      <%= form_for [@build, @review] do |f| %>
+        <% if @review.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@review.errors.count, "error") %> prohibited
+              this review from being saved:</h2>
+            <ul>
+              <% @review.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+          <p>
+            <%= f.label :title  %><br>
+            <%= f.text_field :title %>
+          </p>
+          <p>
+            <%= f.label :body  %><br>
+            <%= f.text_field :body %>
+          </p>
+          <p>
+            <%= f.label :rating  %><br>
+            <%= f.select :rating, 1..10 %>
+          </p>
+          <%= f.submit 'Create Review', class: "button" %>
+        <% end %>
+      <% end %>
+
+      <% if !current_user %>
+        <%= link_to 'If you want to leave a review, please log in.', new_user_session_path, class: "button alert center" %>
+      <% end %>
+    </div>
+  </div>
 </div>
