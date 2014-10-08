@@ -6,7 +6,7 @@ class Build < ActiveRecord::Base
   validates :user_id, presence: true
 
   belongs_to :user
-  has_many :reviews
+  # has_many :score
   has_many :build_commments
   has_many :masteries_photos
   has_many :runes_photos

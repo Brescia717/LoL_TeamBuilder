@@ -11,8 +11,8 @@ class BuildsController < ApplicationController
   def show
     @build = Build.find(params[:id])
     # @user = User.find(params[:user_id])
-    @review = Review.new
-    @reviews = @build.reviews.with_score.includes(:votes)
+    # @review = Review.new
+    # @builds = @build.with_score.includes(:votes)
     # @build_photo = BuildPhoto.new
     # @data = LoLAPI.new(@build)
   end

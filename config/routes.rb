@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index, :edit, :update,]
   resources :builds do
     # resources :neighborhood_photos, except: [:destroy]
-    resources :reviews, except: [:index] do
-      resources :comments, except: [:index, :show]
+    resources :build_comments, except: [:index] do
+      # resources :comments, except: [:index, :show]
       post 'upvote', to: "reviews#upvote"
       post 'downvote', to: "reviews#downvote"
     end
