@@ -1,4 +1,6 @@
 class Build < ActiveRecord::Base
+  acts_as_votable
+
   validates :title, presence: true
   validates :champion, presence: true
   validates :about, presence: true
@@ -6,10 +8,30 @@ class Build < ActiveRecord::Base
   validates :user_id, presence: true
 
   belongs_to :user
-  # has_many :score
-  has_many :build_commments
-  has_many :masteries_photos
-  has_many :runes_photos
+  # has_many :scores
+  has_many :comments
+  has_many :votes
+
+  def owner?(user)
+    self.user == user
+  end
+
+  def upvoted?(user)
+    if user.nil?
+      false
+    else
+      votes.where(user_id: user.id, score: 1).count >= 1
+    end
+  end
+
+  # def calculate_upvotes
+  #   votes.sum(:score)
+  # end
+
+  def self.with_score
+    joins("LEFT OUTER JOIN (SELECT build_id, SUM(score) AS score FROM votes GROUP BY build_id) vote_scores ON vote_scores.build_id = builds.id")
+      .select("builds.*, COALESCE(vote_scores.score, 0) AS score")
+  end
 
   # def self.search(search)
   #   if search.present?
@@ -20,8 +42,8 @@ class Build < ActiveRecord::Base
   # end
 
   def calculate_rating
-    if Review.where(build_id: self.id).count > 0
-      Review.where(build_id: id).sum(:rating) * 10 / Review.where(build_id: id).count
+    if Build.where(build_id: self.id).count > 0
+      Build.where(build_id: id).sum(:rating) * 10 / Build.where(build_id: id).count
     else
       0
     end

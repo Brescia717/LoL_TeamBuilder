@@ -1,4 +1,4 @@
-class BuildCommentsController < ApplicationController
+class CommentsController < ApplicationController
   def new
     @comment = Comment.new
   end
@@ -6,14 +6,14 @@ class BuildCommentsController < ApplicationController
   def create
     @build = Build.find(params[:build_id])
     @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-    @comment.review_id = params[:review_id]
+    @comment.user = current_user # these had _id and .id
+    @comment.build_id = params[:build_id]
     if @comment.save
-      CommentConfirmation.notification(@comment, @comment.review.user).deliver
+      # CommentConfirmation.notification(@comment, @comment.build.user).deliver
       flash[:success] = "You have successfully posted your comment."
-      redirect_to neighborhood_review_path(@review.neighborhood, @review)
+      redirect_to build_path(@build)
     else
-      render 'reviews/show'
+      render 'builds/show'
     end
   end
 
@@ -23,10 +23,12 @@ class BuildCommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    # @build = Build.find(params[:id])
+    # @comment.build_id = params[:build_id]
 
     if @comment.update(comment_params)
       flash[:notice] = "You have successfully updated your comment."
-      redirect_to neighborhood_review_path(@comment.review.neighborhood, @comment.review)
+      redirect_to build_path(@comment.build)
     else
       flash[:notice] = "Please correct changes."
       render 'edit'
@@ -38,7 +40,7 @@ class BuildCommentsController < ApplicationController
     @comment.destroy
     flash[:success] = "You successfully deleted your comment."
 
-    redirect_to neighborhood_review_path(@comment.review.neighborhood, @comment.review)
+    redirect_to build_path(@comment.build)
   end
 
   private

@@ -1,4 +1,6 @@
 class BuildsController < ApplicationController
+  before_filter :authenticate_user!, only: [:upvote, :downvote]
+
   def index
     if params[:search]
       @builds = Build.search(params[:search]).order(:name).page params[:page]
@@ -10,10 +12,10 @@ class BuildsController < ApplicationController
 
   def show
     @build = Build.find(params[:id])
+    @comments = @build.comments
+    @comment = Comment.new
+
     # @user = User.find(params[:user_id])
-    # @review = Review.new
-    # @builds = @build.with_score.includes(:votes)
-    # @build_photo = BuildPhoto.new
     # @data = LoLAPI.new(@build)
   end
 
@@ -24,8 +26,9 @@ class BuildsController < ApplicationController
   def create
     @build = Build.new(build_params)
     @build.user = current_user
+
     if @build.save
-      redirect_to builds_path ## This will be redirect_to @build
+      redirect_to @build ## This will be redirect_to @build
     else
       flash[:notice] = "You need to sign in to create a build."
       render 'new'
@@ -55,6 +58,18 @@ class BuildsController < ApplicationController
       flash[:notice] = "Your build has been deleted."
       redirect_to root_path
     end
+  end
+
+  def upvote
+    @build = Build.find(params[:id])
+    @build.vote_by voter: current_user, vote: 'like'
+    redirect_to @build
+  end
+
+  def downvote
+    @build = Build.find(params[:id])
+    @build.vote_by voter: current_user, vote: 'bad'
+    redirect_to @build
   end
 
   private
