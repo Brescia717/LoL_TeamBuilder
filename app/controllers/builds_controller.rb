@@ -14,6 +14,8 @@ class BuildsController < ApplicationController
     @build = Build.find(params[:id])
     @comments = @build.comments
     @comment = Comment.new
+    @likes = @build.get_likes.size
+    @dislikes = @build.get_dislikes.size
 
     # @user = User.find(params[:user_id])
     # @data = LoLAPI.new(@build)

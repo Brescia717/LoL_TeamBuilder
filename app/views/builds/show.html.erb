@@ -26,10 +26,10 @@
     <%= link_to 'Dislike', dislike_build_path,
         method: :put, class: "downvote button alert tiny" %><br>
 
-  <%= "#{@build.get_likes.size} Upvotes / " %>
-  <%= "#{@build.get_dislikes.size} Downvotes" %>
-  <% if @build.get_dislikes.size > 0 %>
-    <%= ((@build.get_likes.size.to_f / @build.get_dislikes.size.to_f) * 100.00).to_s %>
+  <%= "#{@likes} Upvotes / " %>
+  <%= "#{@dislikes} Downvotes" %>
+  <% if @likes > 0 %>
+    <%= sprintf('%.0f', ((@likes.to_f / (@likes.to_f + @dislikes.to_f)) * 100)).to_s + '%' %>
   <% else %>
     <%= "100%" %>
   <% end %>
