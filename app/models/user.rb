@@ -13,9 +13,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
 
   has_many :builds
-  has_many :reviews
-  has_many :review_comments
-  has_many :build_comments
+  has_many :comments
 
   def admin?
     admin == true

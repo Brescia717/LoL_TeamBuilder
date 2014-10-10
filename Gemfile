@@ -47,6 +47,8 @@ gem 'mandrill-api'
 gem 'therubyracer', platforms: :ruby # or any other runtime
 gem 'less-rails'
 gem 'autoprefixer-rails'
+gem 'acts_as_votable'
+gem 'ruby-lol'
 # gem 'semantic-ui-rails'
 # gem 'semantic-ui-sass', '~> 0.16.1.0'
 

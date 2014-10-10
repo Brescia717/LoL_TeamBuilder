@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show, :index, :edit, :update,]
+  resources :users, only: [:show, :update, :destroy]
   resources :builds do
-    # resources :neighborhood_photos, except: [:destroy]
-    resources :reviews, except: [:index] do
-      resources :comments, except: [:index, :show]
-      post 'upvote', to: "reviews#upvote"
-      post 'downvote', to: "reviews#downvote"
+    member do
+      put "like", to: "builds#upvote"
+      put "dislike", to: "builds#downvote"
     end
+    resources :comments
   end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

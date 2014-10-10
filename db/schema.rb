@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008175114) do
+ActiveRecord::Schema.define(version: 20141009193124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "build_comments", force: true do |t|
-    t.text     "body",       null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "build_id"
-  end
 
   create_table "builds", force: true do |t|
     t.string   "title",      null: false
@@ -34,23 +26,12 @@ ActiveRecord::Schema.define(version: 20141008175114) do
     t.integer  "user_id"
   end
 
-  create_table "review_comments", force: true do |t|
+  create_table "comments", force: true do |t|
     t.text     "body",       null: false
+    t.integer  "user_id",    null: false
+    t.integer  "build_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "review_id"
-    t.integer  "user_id"
-  end
-
-  create_table "reviews", force: true do |t|
-    t.string   "title",                  null: false
-    t.text     "body",                   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "build_id"
-    t.integer  "rating"
-    t.integer  "upvotes",    default: 0
   end
 
   create_table "users", force: true do |t|
@@ -64,6 +45,8 @@ ActiveRecord::Schema.define(version: 20141008175114) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "username"
   end
 
@@ -72,11 +55,18 @@ ActiveRecord::Schema.define(version: 20141008175114) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
-    t.integer  "user_id",                null: false
-    t.integer  "build_id",               null: false
-    t.integer  "score",      default: 0, null: false
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
 end

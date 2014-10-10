@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      # flash[:success] = "You have successfully updated your profile picture."
+      # flash[:success] = "You have successfully updated your profile."
       redirect_to user_path(@user)
     else
       # flash[:alert] = "You need to submit a photo."
