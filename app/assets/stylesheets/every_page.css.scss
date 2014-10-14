@@ -1,0 +1,28 @@
+body {
+  background-color: #4682B4 !important;
+}
+
+body > div > div > ul > li > a {
+  color: white;
+}
+
+body > div > div > ul {
+  background-color: #1A354F !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+body > div > div > a.button {
+  background-color: #D17519;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.index {
+  border-width: 10px !important;
+  border-color: white !important;
+}
