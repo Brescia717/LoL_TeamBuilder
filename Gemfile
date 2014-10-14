@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby "2.0.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
@@ -49,6 +49,8 @@ gem 'less-rails'
 gem 'autoprefixer-rails'
 gem 'acts_as_votable'
 gem 'ruby-lol'
+gem 'unicorn'
+gem 'rails_12factor', group: :production
 # gem 'semantic-ui-rails'
 # gem 'semantic-ui-sass', '~> 0.16.1.0'
 
