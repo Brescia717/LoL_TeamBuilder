@@ -7,17 +7,38 @@ body > div > div > ul > li > a {
 }
 
 body > div > div > ul {
-  background-color: #1A354F !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  background-color: #1A354F;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 body > div > div > a.button {
   background-color: #D17519;
+  margin-left: 17.5px;
 }
 
 ul {
   list-style-type: none;
+}
+
+#new_build > input {
+  background-color: #D17519;
+}
+
+body > div > div.alert-box.notice {
+  background-color: #D17519;
+}
+
+#new_user > div:nth-child(6) > input {
+  background-color: #D17519;
+}
+
+#new_comment > input {
+  background-color: #D17519;
+}
+
+body > div > div > ul > li {
+  color: gray;
 }
