@@ -1,0 +1,36 @@
+body {
+  background-color: #4682B4 !important;
+}
+
+body > div > div > ul > li > a {
+  color: white;
+}
+
+body > div > div > ul {
+  background-color: #1A354F;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* body > div > div > a.button {
+  background-color: #D17519;
+  margin-left: 17.5px;
+} */
+
+ul {
+  list-style-type: none;
+}
+
+body > div > div.alert-box.notice {
+  background-color: #D17519;
+}
+
+#new_user > div:nth-child(6) > input {
+  background-color: #D17519;
+}
+
+body > div > div > ul > li {
+  color: gray;
+}

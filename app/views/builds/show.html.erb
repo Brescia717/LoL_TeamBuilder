@@ -15,21 +15,21 @@
   <% if current_user == @build.user %>
     <%= link_to "Edit", edit_build_path, class: "button tiny edit" %>
     <%= link_to "Delete", build_path,
-        method: :delete,
-        data: { confirm: 'Are you sure you want to delete this build?' },
-        class: "button tiny delete" %><br>
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this build?' },
+          class: "button tiny delete" %><br>
   <% end %>
 
     <%= link_to 'Like', like_build_path,
-        method: :put, class: "upvote button success tiny" %>
+          method: :put, class: "upvote button success tiny" %>
 
     <%= link_to 'Dislike', dislike_build_path,
-        method: :put, class: "downvote button alert tiny" %><br>
+          method: :put, class: "downvote button alert tiny" %><br>
 
-  <%= "#{@build.get_likes.size} Upvotes / " %>
-  <%= "#{@build.get_dislikes.size} Downvotes" %>
-  <% if @build.get_dislikes.size > 0 %>
-    <%= ((@build.get_likes.size.to_f / @build.get_dislikes.size.to_f) * 100.00).to_s %>
+  <%= "#{@likes} Upvotes / " %>
+  <%= "#{@dislikes} Downvotes" %>
+  <% if @likes > 0 %>
+    <%= sprintf('%.0f', ((@likes.to_f / (@likes.to_f + @dislikes.to_f)) * 100)).to_s + '%' %>
   <% else %>
     <%= "100%" %>
   <% end %>
@@ -46,7 +46,8 @@
           <div class="title">
 
             <p>
-              <em>Written by: <%= link_to comment.user.username, user_path(comment.user) %></em>
+              <em>Written by: <%= link_to comment.user.username,
+                  user_path(comment.user) %></em>
             </p>
           </div>
 
@@ -54,8 +55,12 @@
             <%= comment.body %><br><br>
 
             <% if comment.owner?(current_user) %>
-              <%= link_to 'Edit', edit_build_comment_path(@build, comment), class: "button tiny edit" %>
-              <%= link_to 'Delete', build_comment_path(@build, comment), method: :delete, data: {confirm: 'Are you sure you want to delete comment?'}, class: "button tiny delete" %>
+              <%= link_to 'Edit', edit_build_comment_path(@build, comment),
+                    class: "button tiny edit" %>
+              <%= link_to 'Delete', build_comment_path(@build, comment),
+                    method: :delete,
+                    data: {confirm: 'Are you sure you want to delete comment?'},
+                    class: "button tiny delete" %>
             <% end %>
 
           </article>
@@ -93,8 +98,11 @@
       <% end %>
 
       <% if !current_user %>
-        <%= link_to 'If you want to leave a review, please log in.', new_user_session_path, class: "button alert center" %>
+        <%= link_to 'If you want to leave a review, please log in.',
+            new_user_session_path, class: "button alert center" %>
       <% end %>
+
+      <%= link_to "Back", root_path, class: "button tiny" %>
     </div>
   </div>
 </div>

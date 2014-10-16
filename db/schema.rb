@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009193124) do
+ActiveRecord::Schema.define(version: 20141016180821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,42 @@ ActiveRecord::Schema.define(version: 20141009193124) do
     t.text     "body",       null: false
     t.integer  "user_id",    null: false
     t.integer  "build_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.integer  "uid",         null: false
+    t.string   "name",        null: false
+    t.string   "image_name",  null: false
+    t.text     "description", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "masteries", force: true do |t|
+    t.integer  "uid",         null: false
+    t.string   "name",        null: false
+    t.string   "image_name",  null: false
+    t.text     "description", null: false, array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "runes", force: true do |t|
+    t.integer  "uid",         null: false
+    t.string   "name",        null: false
+    t.string   "image_name",  null: false
+    t.text     "description", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "summoner_spells", force: true do |t|
+    t.integer  "uid"
+    t.string   "name"
+    t.text     "description"
+    t.string   "image_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

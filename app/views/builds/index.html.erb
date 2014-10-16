@@ -12,3 +12,11 @@
     <%= link_to "Create a Build", new_build_path, class: "button" %>
 
 </div>
+
+<% Mastery.all.each do |spell| %>
+
+  <h3><%= spell.name %></h3>
+  <p><%= spell.description %></p>
+  <%= image_tag "masteries/#{spell.image_name}" %>
+
+<% end %>
