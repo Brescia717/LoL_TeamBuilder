@@ -14,17 +14,13 @@ body > div > div > ul {
   padding-bottom: 10px;
 }
 
-body > div > div > a.button {
+/* body > div > div > a.button {
   background-color: #D17519;
   margin-left: 17.5px;
-}
+} */
 
 ul {
   list-style-type: none;
-}
-
-#new_build > input {
-  background-color: #D17519;
 }
 
 body > div > div.alert-box.notice {
@@ -32,10 +28,6 @@ body > div > div.alert-box.notice {
 }
 
 #new_user > div:nth-child(6) > input {
-  background-color: #D17519;
-}
-
-#new_comment > input {
   background-color: #D17519;
 }
 
