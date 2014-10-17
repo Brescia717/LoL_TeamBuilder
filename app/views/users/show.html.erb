@@ -16,7 +16,7 @@
           <%= "Secondary Role:  #{@user.secondary_role}" %>
         </li>
         <li class="lolking_profile_link">
-          <%= "LoLKing Profile:  #{@user.lolking_profile_link}" %>
+          LoLKing Profile:  <%= link_to "#{@user.summoner_name}", @user.lolking_profile_link %>
         </li>
         <% if @user == current_user %>
           <li class="email"><%= "Email:  #{@user.email}" %></li>

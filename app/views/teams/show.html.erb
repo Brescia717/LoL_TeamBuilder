@@ -57,14 +57,14 @@
 
   <div class="row">
     <div class="large-offset-1 large-10 columns write">
-    <h2>Write A Review For <%= @team.user.summoner_name %>'s Team</h2>
+    <h2>Write A Comment For <%= @team.user.summoner_name %>'s Team</h2>
 
     <% if current_user %>
       <%= form_for [@team, @comment] do |f| %>
         <% if @comment.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@comment.errors.count, "error") %> prohibited
-              this review from being saved:</h2>
+              this comment from being saved:</h2>
             <ul>
               <% @comment.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
