@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user! only: [:upvote, :downvote]
   def index
   end
 
@@ -18,6 +19,18 @@ class UsersController < ApplicationController
       # flash[:alert] = "You need to submit a photo."
       render 'show'
     end
+  end
+
+  def upvote
+    @team = Team.find(params[:id])
+    @team.vote_by voter: current_user, vote: 'like'
+    redirect_to @team
+  end
+
+  def downvote
+    @team = Team.find(params[:id])
+    @team.vote_by voter: current_user, vote: 'bad'
+    redirect_to @team
   end
 
   private
