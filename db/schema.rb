@@ -55,11 +55,7 @@ ActiveRecord::Schema.define(version: 20141009193124) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["lolking_profile_link"], name: "index_users_on_lolking_profile_link", unique: true, using: :btree
-  add_index "users", ["primary_role"], name: "index_users_on_primary_role", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["secondary_role"], name: "index_users_on_secondary_role", using: :btree
-  add_index "users", ["summoner_name"], name: "index_users_on_summoner_name", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|

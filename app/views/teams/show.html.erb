@@ -8,8 +8,8 @@
   </p>
 
   <p>
-    <%= @team.user.primary_role %>
-    <%= @team.user.secondary_role %>
+    Primary Role: <%= @team.user.primary_role.capitalize %><br />
+    Secondary Role: (<%= @team.user.secondary_role.capitalize %>)
   </p>
 
   <% if current_user == @team.user %>
@@ -31,8 +31,8 @@
           <div class="title">
 
             <p>
-              <em>Written by: <%= link_to comment.user.username,
-                  user_path(comment.user) %></em>
+              Written by: <%= link_to comment.user.username.capitalize,
+                              user_path(comment.user), class: "user-prof-link" %>
             </p>
           </div>
 
@@ -91,3 +91,5 @@
     </div>
   </div>
 </div>
+
+<script src="http://localhost:35729/livereload.js"></script>
