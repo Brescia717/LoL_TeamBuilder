@@ -3,11 +3,30 @@
   <aside class="large-4 columns user-sidebar">
 
     <h1><%= "#{@user.username}'s Profile Page" %></h1>
-    <% if @user == current_user %>
+
+
       <ul class="vcard">
-        <li class="email"><%= "Email:  #{@user.email}" %></li>
+        <% if @user == current_user %>
+          <li class="email"><%= "Email:  #{@user.email}" %></li>
+        <% end %>
       </ul>
-    <% end %>
   </aside>
+
+  <%= link_to 'Like', like_user_path,
+        method: :put, class: "upvote button success tiny" %>
+
+  <%= link_to 'Dislike', dislike_user_path,
+        method: :put, class: "downvote button alert tiny" %><br>
+
+  <%= "#{@likes} Upvotes / " %>
+  <%= "#{@dislikes} Downvotes" %>
+  <% if @likes > 0 %>
+    <%= sprintf('%.0f', ((@likes.to_f / (@likes.to_f + @dislikes.to_f)) * 100)).to_s + '%' %>
+  <% elsif @likes == 0 && @dislikes == 0 %>
+    <%= "No registered votes" %>
+  <% else %>
+    <%= "100%" %>
+  <% end %>
+
 
 </div>
