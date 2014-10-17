@@ -6,6 +6,18 @@
 
 
       <ul class="vcard">
+        <li class="primary_role">
+          <%= "Summoner Name:  #{@user.summoner_name}" %>
+        </li>
+        <li class="primary_role">
+          <%= "Primary Role:  #{@user.primary_role.capitalize}" %>
+        </li>
+        <li class="secondary_role">
+          <%= "Secondary Role:  #{@user.secondary_role.capitalize}" %>
+        </li>
+        <li class="lolking_profile_link">
+          LoLKing Profile:  <%= link_to "#{@user.summoner_name}", @user.lolking_profile_link %>
+        </li>
         <% if @user == current_user %>
           <li class="email"><%= "Email:  #{@user.email}" %></li>
         <% end %>
@@ -18,15 +30,16 @@
   <%= link_to 'Dislike', dislike_user_path,
         method: :put, class: "downvote button alert tiny" %><br>
 
+
   <%= "#{@likes} Upvotes / " %>
   <%= "#{@dislikes} Downvotes" %>
   <% if @likes > 0 %>
     <%= sprintf('%.0f', ((@likes.to_f / (@likes.to_f + @dislikes.to_f)) * 100)).to_s + '%' %>
   <% elsif @likes == 0 && @dislikes == 0 %>
     <%= "No registered votes" %>
+  <% elsif @likes == 0 && @dislikes > 0 %>
+    <%= "Uh-oh, better change your behavior!" %>
   <% else %>
     <%= "100%" %>
   <% end %>
-
-
 </div>
