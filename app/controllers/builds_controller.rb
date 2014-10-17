@@ -74,6 +74,17 @@ class BuildsController < ApplicationController
     redirect_to @build
   end
 
+  def name_check(model, name_content)
+    model.each do |model_item|
+      if model_item.name.include? name_content
+        model_item.name
+      end
+      model_item.name
+      model_item.image
+      model_item.description
+    end
+  end
+
   private
   def build_params
     params.require(:build).permit(:title, :champion, :about, :tips)

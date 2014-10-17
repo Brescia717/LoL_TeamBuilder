@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(version: 20141016180821) do
   end
 
   create_table "summoner_spells", force: true do |t|
-    t.integer  "uid"
-    t.string   "name"
-    t.text     "description"
-    t.string   "image_name"
+    t.integer  "uid",         null: false
+    t.string   "name",        null: false
+    t.text     "description", null: false
+    t.string   "image_name",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

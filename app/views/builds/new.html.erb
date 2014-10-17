@@ -35,42 +35,6 @@
     <% end %>
     <hr>
 
-    <% Rune.all.each do |rune| %>
-      <% if rune.name.include? "Greater" %>
-
-      <div class="large-6 columns">
-        <label></label>
-        <input id="checkbox2" type="checkbox">
-          <label for="checkbox2"><%= image_tag "runes/#{rune.image_name}" %></label>
-          <%= rune.name %><br>
-          <%= rune.description %>
-      </div>
-      <% end %>
-    <% end %>
-    <hr>
-
-    <% Item.all.each do |item| %>
-    <div class="large-6 columns">
-      <label></label>
-      <input id="checkbox2" type="checkbox">
-        <label for="checkbox2"><%= image_tag "items/#{item.image_name}" %></label>
-        <%= item.name %><br>
-        <%= item.description %>
-    </div>
-    <% end %>
-    <hr>
-
-    <% Mastery.all.each do |mastery| %>
-    <div class="large-6 columns">
-      <label></label>
-      <input id="checkbox2" type="checkbox">
-        <label for="checkbox2"><%= image_tag "masteries/#{mastery.image_name}" %></label>
-        <%= mastery.name %><br>
-        <%= mastery.description %>
-    </div>
-    <% end %>
-    <hr>
-
     <%= f.submit 'Create Build', class: "button" %>
     <hr>
   <% end %>
