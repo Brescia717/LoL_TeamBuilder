@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user! only: [:upvote, :downvote]
+  before_filter :authenticate_user!, only: [:upvote, :downvote]
+
   def index
   end
 
   def show
     @user = User.find(params[:id])
-    @likes = @team.get_likes.size
-    @dislikes = @team.get_dislikes.size
+    @likes = @user.get_likes.size
+    @dislikes = @user.get_dislikes.size
   end
 
   def update
@@ -22,15 +23,15 @@ class UsersController < ApplicationController
   end
 
   def upvote
-    @team = Team.find(params[:id])
-    @team.vote_by voter: current_user, vote: 'like'
-    redirect_to @team
+    @user = User.find(params[:id])
+    @user.vote_by voter: current_user, vote: 'like'
+    redirect_to @user
   end
 
   def downvote
-    @team = Team.find(params[:id])
-    @team.vote_by voter: current_user, vote: 'bad'
-    redirect_to @team
+    @user = User.find(params[:id])
+    @user.vote_by voter: current_user, vote: 'bad'
+    redirect_to @user
   end
 
   private
