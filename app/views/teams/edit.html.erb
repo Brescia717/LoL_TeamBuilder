@@ -1,0 +1,41 @@
+<div class="row information">
+  <h1>Edit <%= @team.user.summoner_name %>'s Team</h1>
+
+  <% if current_user %>
+    <%= form_for @team do |f| %>
+     <% if @team.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@team.errors.count, "error") %> prohibited
+            this team from being saved:</h2>
+          <ul>
+            <% @team.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end%>
+
+      <p>
+        <%= f.label :about %><br>
+        <%= f.text_field :about %>
+      </p>
+
+      <p>
+        <%= f.label :rank %><br>
+        <%= f.text_field :rank %>
+      </p>
+
+      <p>
+        <%= f.label :primary_role %><br>
+        <%= f.text_field :primary_role %>
+      </p>
+
+      <p>
+        <%= f.label :secondary_role %><br>
+        <%= f.text_field :secondary_role %>
+      </p>
+
+      <%= f.submit "Update Team", class: "button" %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<div class="row information">
+  <h1>Featured Teams</h1>
+
+  <ul>
+    <% @teams.each do |team| %>
+      <li><%= link_to team.rank, team_path(team) %><br>
+      <%= "  #{team.about}" %></li>
+      
+    <% end %>
+  </ul>
+
+  <!-- This needs to be set so that if logged in can see 'create form' -->
+    <%= link_to "Create a Team", new_team_path, class: "button" %>
+
+</div>

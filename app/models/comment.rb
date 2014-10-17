@@ -1,9 +1,9 @@
 class Comment < ActiveRecord::Base
   validates :body, presence: true
   validates :user_id, presence: true
-  validates :build_id, presence: true
+  validates :team_id, presence: true
 
-  belongs_to :build
+  belongs_to :team
   belongs_to :user
 
   def owner?(user)

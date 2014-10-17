@@ -4,14 +4,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @build = Build.find(params[:build_id])
+    @team = Team.find(params[:team_id])
     @comment = Comment.new(comment_params)
     @comment.user = current_user # these had _id and .id
-    @comment.build_id = params[:build_id]
+    @comment.team_id = params[:team_id]
     if @comment.save
-      # CommentConfirmation.notification(@comment, @comment.build.user).deliver
+      # CommentConfirmation.notification(@comment, @comment.team.user).deliver
       flash[:success] = "You have successfully posted your comment."
-      redirect_to build_path(@build)
+      redirect_to team_path(@team)
     else
       render 'builds/show'
     end
@@ -23,12 +23,12 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    # @build = Build.find(params[:id])
-    # @comment.build_id = params[:build_id]
+    # @team = Team.find(params[:id])
+    # @comment.team_id = params[:team_id]
 
     if @comment.update(comment_params)
       flash[:notice] = "You have successfully updated your comment."
-      redirect_to build_path(@comment.build)
+      redirect_to team_path(@comment.team)
     else
       flash[:notice] = "Please correct changes."
       render 'edit'
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     flash[:success] = "You successfully deleted your comment."
 
-    redirect_to build_path(@comment.build)
+    redirect_to team_path(@comment.team)
   end
 
   private

@@ -11,61 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016180821) do
+ActiveRecord::Schema.define(version: 20141009193124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "builds", force: true do |t|
-    t.string   "title",      null: false
-    t.string   "champion",   null: false
-    t.text     "about",      null: false
-    t.text     "tips"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
   create_table "comments", force: true do |t|
     t.text     "body",       null: false
     t.integer  "user_id",    null: false
-    t.integer  "build_id",   null: false
+    t.integer  "team_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "items", force: true do |t|
-    t.integer  "uid",         null: false
-    t.string   "name",        null: false
-    t.string   "image_name",  null: false
-    t.text     "description", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "masteries", force: true do |t|
-    t.integer  "uid",         null: false
-    t.string   "name",        null: false
-    t.string   "image_name",  null: false
-    t.text     "description", null: false, array: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "runes", force: true do |t|
-    t.integer  "uid",         null: false
-    t.string   "name",        null: false
-    t.string   "image_name",  null: false
-    t.text     "description", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "summoner_spells", force: true do |t|
-    t.integer  "uid",         null: false
-    t.string   "name",        null: false
-    t.text     "description", null: false
-    t.string   "image_name",  null: false
+  create_table "teams", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.text     "about"
+    t.string   "rank",           null: false
+    t.string   "primary_role",   null: false
+    t.string   "secondary_role", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,10 +48,18 @@ ActiveRecord::Schema.define(version: 20141016180821) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "summoner_name"
+    t.string   "primary_role"
+    t.string   "secondary_role"
+    t.string   "lolking_profile_link"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["lolking_profile_link"], name: "index_users_on_lolking_profile_link", unique: true, using: :btree
+  add_index "users", ["primary_role"], name: "index_users_on_primary_role", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["secondary_role"], name: "index_users_on_secondary_role", using: :btree
+  add_index "users", ["summoner_name"], name: "index_users_on_summoner_name", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|

@@ -10,6 +10,18 @@
       <div><%= f.label :username %><br />
       <%= f.text_field :username %></div>
 
+      <div><%= f.label :summoner_name %><br />
+      <%= f.text_field :summoner_name %></div>
+
+      <div><%= f.label :primary_role %><br />
+      <%= f.text_field :primary_role %></div>
+
+      <div><%= f.label :secondary_role %><br />
+      <%= f.text_field :secondary_role %></div>
+
+      <div><%= f.label :lolking_profile_link %><br />
+      <%= f.text_field :lolking_profile_link %></div>
+
       <div><%= f.label :password %> <% if @validatable %>
         <i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
         <%= f.password_field :password, autocomplete: "off" %></div>

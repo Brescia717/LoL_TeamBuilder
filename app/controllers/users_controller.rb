@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @likes = @team.get_likes.size
+    @dislikes = @team.get_dislikes.size
   end
 
   def update
