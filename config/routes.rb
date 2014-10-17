@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show, :update, :destroy]
-  resources :builds do
-    member do
-      put "like", to: "builds#upvote"
-      put "dislike", to: "builds#downvote"
-    end
+  resources :teams do
     resources :comments
+  end
+  resources :users, only: [:show, :update, :destroy] do
+    member do
+      put "like", to: "users#upvote"
+      put "dislike", to: "users#downvote"
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'builds#index'
+  root 'teams#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

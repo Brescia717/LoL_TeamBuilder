@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  acts_as_votable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,9 +12,14 @@ class User < ActiveRecord::Base
   # mount_uploader :profile_photo, ProfilePhotoUploader
 
   validates :username, presence: true, uniqueness: true
+  validates :summoner_name, presence: true, uniqueness: true
+  validates :primary_role, presence: true
+  validates :secondary_role, presence: true
+  validates :lolking_profile_link, presence: true
 
-  has_many :builds
+  has_many :teams
   has_many :comments
+  has_many :votes
 
   def admin?
     admin == true
