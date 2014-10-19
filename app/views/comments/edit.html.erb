@@ -16,7 +16,7 @@
         <% end %>
       <p id="body-tag">
         <%= f.label :body  %><br>
-        <textarea id="styled"><%= f.text_field :body %></textarea>
+        <%= f.text_field :body %>
       </p>
 
       <%= f.submit "Update Comment", class: "button" %>

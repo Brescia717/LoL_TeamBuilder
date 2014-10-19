@@ -11,8 +11,8 @@
 </div>
 <div class="row" id="edit-delete-team-buttons">
   <% if current_user == @team.user %>
-    <%= link_to "Edit", edit_team_path, class: "button left tiny edit" %>
-    <%= link_to "Delete", team_path,
+    <%= link_to "Edit", edit_team_path(@team), class: "button left tiny edit" %>
+    <%= link_to "Delete", team_path(@team),
           method: :delete,
           data: { confirm: 'Are you sure you want to delete this team?' },
           class: "button tiny delete" %><br>

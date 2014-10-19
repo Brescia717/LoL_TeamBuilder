@@ -1,21 +1,19 @@
-body > div > div > aside > ul > li.lolking_profile_link > a {
-  color: silver;
-  font-style: underline;
-}
-
 body > div > div > aside > h1 {
   align: center !important;
 }
 
-body > div > div > a.upvote.button.success.tiny.button:hover {
-  background-color: green !important;
+body > div > div > div > a.upvote.button.success.tiny.button:hover {
+  background-color: #36D936 !important;
 }
 
-body > div > div > a.downvote.button.alert.tiny.button:hover {
-  background-color: red !important;
-
+body > div > div > div > a.downvote.button.alert.tiny.button:hover {
+  background-color: #FF4040 !important;
 }
 
-body > div > div > aside > ul > li {
-  color: silver;
+body > div > div > aside > ul > li.lolking_profile_link > u > a {
+  color: #D9D936;
+  font-style: underline;
 }
+.info-for-vcard { color: #004EBA; }
+
+.vote-score { color: white; margin-left: 35px; }

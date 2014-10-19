@@ -61,15 +61,28 @@ body > div > a.button.tiny.edit {
 #edit-delete-comment-buttons {
   margin-left: 100px;
 }
+/*
+textarea#comment-new {
+  height: 150px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+} */
 
-textarea#styled {
-  /* width: 600px; */
-	height: 150px;
-	border: 3px solid #cccccc;
-	padding: 5px;
-	font-family: Tahoma, sans-serif;
-	background-position: bottom right;
-	background-repeat: no-repeat;
+/* textarea#styled {
+  width: 600px;
+  height: 150px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+} */
+
+#edit-delete-team-buttons > a.button.left.tiny.edit {
+  margin-right: 5px;
 }
 
 #back-button {
@@ -82,4 +95,9 @@ textarea#styled {
 
 body > div > div.alert-box.notice {
   padding: none;
+}
+
+body > div > div > div > h2 {
+  color: #E5E4E2;
+  text-align: center;
 }
