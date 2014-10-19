@@ -1,4 +1,5 @@
-<div class="row information" style="margin-top: 10px;">
+<div class="user-show"><span style="color: rgba(0,0,0,0)">.</span>
+<div class="row information">
 
   <h1 style="text-align: center;"><%= "#{@user.summoner_name}'s Profile" %></h1><br />
 
@@ -30,10 +31,14 @@
     <%= link_to 'Dislike', dislike_user_path,
           method: :put, class: "downvote button alert tiny" %><br>
     <% end %>
+
+    <%= link_to "Back", teams_path, class: "button tiny" %>
   </div>
   <div class="vote-score">
     <tag class="likes"><%= "#{@likes} Upvotes / " %></tag>
     <tag class="dislikes"><%= "#{@dislikes} Downvotes" %></tag>
     <%= " - #{@percentage_likes}" %>
   </div>
+</div>
+
 </div>

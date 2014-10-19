@@ -47,7 +47,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     if @team.destroy
       flash[:notice] = "Your team has been deleted."
-      redirect_to root_path
+      redirect_to teams_path
     end
   end
 

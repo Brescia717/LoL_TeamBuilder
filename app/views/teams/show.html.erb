@@ -1,5 +1,7 @@
+<div class="team-show"><span style="color: rgba(0,0,0,0)">.</span>
+
 <div class="row information">
-  <h1 style="text-align: center;"><%= link_to "#{@team.user.summoner_name}'s Team", user_path(@team.user) %></h1>
+  <h1 class="panel callout radius" style="text-align: center;"><%= link_to "#{@team.user.summoner_name}'s Team", user_path(@team.user) %></h1>
   <h3><%= @team.rank %></h3>
   <div class="panel" id="team-show-panel">
     <p>
@@ -23,7 +25,7 @@
 <div class="row">
     <!-- <div class="large-offset-1 large-10 columns reviews"> -->
       <% if @comment %>
-      <h2 style="text-align: center;"> All Comments For <%= @team.user.summoner_name %>'s Team </h2>
+      <h2 class="header" style="text-align: center;"> All Comments For <%= @team.user.summoner_name %>'s Team </h2>
         <% @comments.each do |comment| %>
           <div class="title">
             <div class="panel" id="comment">
@@ -55,7 +57,7 @@
 
   <div class="row">
     <div class="large-offset-1 large-10 columns write">
-    <h2>Write A Comment For <%= @team.user.summoner_name %>'s Team</h2>
+    <h2 class="header">Write A Comment For <%= @team.user.summoner_name %>'s Team</h2>
 
     <% if current_user %>
       <%= form_for [@team, @comment] do |f| %>
@@ -88,5 +90,6 @@
     </div>
   </div>
   <hr>
-  <%= link_to "Back", root_path, class: "button tiny", id: "back-button" %>
+  <%= link_to "Back", teams_path, class: "button tiny", id: "back-button" %>
+</div>
 </div>

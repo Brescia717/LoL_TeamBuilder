@@ -17,32 +17,32 @@ div {
   font-size: 17px;
 }
 
-body > div > div.row.information > h1 > a {
+body > div > div > div.row.information > h1 > a {
   color: #E5E4E2;
 }
 
-body > div > div.row.information > h2 {
+body > div > div > div.row.information > h2 {
   color: #E1E1E1;
+}
+
+body > div > div > div > h2 {
+  color: #E5E4E2;
 }
 
 body > div > div > h2 {
   color: #E5E4E2;
 }
 
-body > div > h2 {
+body > div > div > div.row.information > h3 {
   color: #E5E4E2;
 }
 
-body > div > div.row.information > h3 {
-  color: #E5E4E2;
-}
-
-body > div > div.row.information > a.button.tiny.edit {
+body > div > div > div.row.information > a.button.tiny.edit {
   margin-right: auto;
   margin-left: 50px !important;
 }
 
-body > div > a.button.tiny.edit {
+body > div > div > a.button.tiny.edit {
   /* vertical-align: text-top; */
 }
 
@@ -61,6 +61,17 @@ body > div > a.button.tiny.edit {
 #edit-delete-comment-buttons {
   margin-left: 100px;
 }
+
+.team-show {
+    background-image: url("/assets/lol-team.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: relative;
+    margin-top: -10px;
+    min-height: 700px;
+    width: auto;
+}
+
 /*
 textarea#comment-new {
   height: 150px;
@@ -86,18 +97,18 @@ textarea#comment-new {
 }
 
 #back-button {
-  margin-left: 520px;
+  margin-left: 570px;
 }
 
 #edit-delete-team-buttons {
   margin-left: 75px;
 }
 
-body > div > div.alert-box.notice {
+body > div > div > div.alert-box.notice {
   padding: none;
 }
 
-body > div > div > div > h2 {
+body > div > div > div > div > h2 {
   color: #E5E4E2;
   text-align: center;
 }
