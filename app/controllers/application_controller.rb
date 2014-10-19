@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
                                                             :primary_role, :secondary_role,
                                                             :lolking_profile_link,
                                                             :password, :password_confirmation,
-                                                            :remember_me) }
+                                                            :current_password, :remember_me) }
   end
 
   def authorize!

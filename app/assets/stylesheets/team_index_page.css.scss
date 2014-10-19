@@ -9,7 +9,7 @@ body > div > div > ul > li {
 
 body > div > div> div > ul {
   background-color: #1A354F;
-  margin-top: 50px;
+  margin-top: 60px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
@@ -22,10 +22,14 @@ body > div > div> div > ul {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: relative;
-  height: 1000px;
+  height: 1100px;
 }
 
 body > div > div > div > h1 {
   text-align: center;
   color: white;
+}
+
+body > div > div > div > a.button {
+  /* margin-left: 380px; */
 }
