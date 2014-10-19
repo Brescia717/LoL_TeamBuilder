@@ -5,3 +5,7 @@ body > div > div > h2 {
 #edit_user > div:nth-child(11) > input {
   margin-left: 380px;
 }
+
+body > div > div > form.button_to > div > input.button.tiny{
+  background-color: #FF4040 !important;
+}

@@ -8,6 +8,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @likes = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
+    @percentage_likes=
+    if @likes > 0
+      sprintf('%.0f', ((@likes.to_f / (@likes.to_f + @dislikes.to_f)) * 100)).to_s + '%'
+    elsif @likes == 0 && @dislikes == 0
+      "No registered votes"
+    elsif @likes == 0 && @dislikes > 0
+      "Uh-oh, better change your behavior!"
+    else
+      "100%"
+    end
   end
 
   def update

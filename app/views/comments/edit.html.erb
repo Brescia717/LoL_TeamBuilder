@@ -1,8 +1,8 @@
 <div class="row information">
-  <h1>Edit Comment on <%= @comment.build.title %></h1>
+  <h1><%= "Edit Comment on #{@comment.team.user.summoner_name}'s Team" %></h1>
 
   <% if current_user %>
-    <%= form_for [@comment.build, @comment] do |f| %>
+    <%= form_for [@comment.team, @comment] do |f| %>
       <% if @comment.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@comment.errors.count, "error") %> prohibited
@@ -14,7 +14,7 @@
             </ul>
           </div>
         <% end %>
-      <p>
+      <p id="body-tag">
         <%= f.label :body  %><br>
         <%= f.text_field :body %>
       </p>

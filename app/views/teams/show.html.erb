@@ -1,45 +1,42 @@
 <div class="row information">
-  <h1 style="text-align: center;"><%= @team.user.summoner_name %>'s Team</h1>
-  <h2>Team Owner: <%= link_to "#{@team.user.summoner_name}", user_path(@team.user) %></h2>
+  <h1 style="text-align: center;"><%= link_to "#{@team.user.summoner_name}'s Team", user_path(@team.user) %></h1>
   <h3><%= @team.rank %></h3>
-
-  <p>
-    <%= @team.about %>
-  </p>
-
-  <p>
-    Primary Role: <%= @team.user.primary_role.capitalize %><br />
-    Secondary Role: (<%= @team.user.secondary_role.capitalize %>)
-  </p>
-  <!-- <div class="clearfix"> -->
-    <% if current_user == @team.user %>
-      <%= link_to "Edit", edit_team_path, class: "button left tiny edit" %>
-      <%= link_to "Delete", team_path,
-            method: :delete,
-            data: { confirm: 'Are you sure you want to delete this team?' },
-            class: "button tiny delete" %><br>
-    <% end %>
+  <div class="panel" id="team-show-panel">
+    <p>
+      <%= @team.about %><br />
+      Primary Role: <%= @team.user.primary_role.capitalize %><br />
+      Secondary Role: (<%= @team.user.secondary_role.capitalize %>)
+    </p>
   </div>
-
+</div>
+<div class="row" id="edit-delete-team-buttons">
+  <% if current_user == @team.user %>
+    <%= link_to "Edit", edit_team_path(@team), class: "button left tiny edit" %>
+    <%= link_to "Delete", team_path(@team),
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this team?' },
+          class: "button tiny delete" %><br>
+  <% end %>
 </div>
 <hr>
 
 <div class="row">
     <!-- <div class="large-offset-1 large-10 columns reviews"> -->
       <% if @comment %>
-      <h2> All Comments For <%= @team.user.summoner_name %>'s Team </h2>
+      <h2 style="text-align: center;"> All Comments For <%= @team.user.summoner_name %>'s Team </h2>
         <% @comments.each do |comment| %>
           <div class="title">
-
-            <p>
-              Written by: <%= link_to comment.user.username.capitalize,
-                              user_path(comment.user), class: "user-prof-link" %>
-            </p>
+            <div class="panel" id="comment">
+              <p>
+                Written by: <%= link_to comment.user.summoner_name.capitalize,
+                                user_path(comment.user), class: "user-prof-link" %>
+              </p>
+              <article class="comment-body">
+                <%= comment.body %><br><br>
+              </article>
+            </div>
           </div>
-
-          <article class="comment-body">
-            <%= comment.body %><br><br>
-
+          <div id="edit-delete-comment-buttons">
             <% if comment.owner?(current_user) %>
               <%= link_to 'Edit', edit_team_comment_path(@team, comment),
                     class: "button tiny edit" %>
@@ -48,8 +45,8 @@
                     data: {confirm: 'Are you sure you want to delete comment?'},
                     class: "button tiny delete" %>
             <% end %>
+          </div>
 
-          </article>
         <% end %>
       <% end %>
     <!-- </div> -->
@@ -88,7 +85,8 @@
             new_user_session_path, class: "button alert center" %>
       <% end %>
 
-      <%= link_to "Back", root_path, class: "button tiny" %>
     </div>
   </div>
+  <hr>
+  <%= link_to "Back", root_path, class: "button tiny", id: "back-button" %>
 </div>

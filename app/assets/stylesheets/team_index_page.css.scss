@@ -10,11 +10,12 @@ body > div > div > ul > li {
 body > div > div> div > ul {
   background-color: #1A354F;
   margin-top: 60px;
+  margin-left: 150px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 5px;
-  /* width: 500px; */
+  width: 700px;
 }
 
 .dream-home {
@@ -32,4 +33,8 @@ body > div > div > div > h1 {
 
 body > div > div > div > a.button {
   /* margin-left: 380px; */
+}
+
+#create-team {
+  margin-left: 400px;
 }

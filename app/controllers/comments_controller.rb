@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
       flash[:success] = "You have successfully posted your comment."
       redirect_to team_path(@team)
     else
-      render 'builds/show'
+      redirect_to team_path(@team)
+      flash[:alert] = "Comment cannot be blank."
     end
   end
 

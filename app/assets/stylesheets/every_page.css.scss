@@ -15,7 +15,7 @@ body {
 }
 
 /* _nav bar */
-body > div > nav > section > ul > li:nth-child(1) > a {
+#welcome-back > a {
   background-color: #008cba !important;
 }
 
@@ -36,6 +36,7 @@ ul {
 
 body > div > div.alert-box.notice {
   background-color: #D17519;
+  margin-bottom: 0px !important;
 }
 
 /* #new_user > div:nth-child(6) > input {
