@@ -9,7 +9,7 @@
     <ul class="right">
       <% if current_user %>
 
-        <li><%= link_to "Welcome back #{current_user.username}!", user_path(current_user), class: "button notice" %></li>
+        <li id="welcome-back"><%= link_to "Welcome back #{current_user.username}!", user_path(current_user), class: "button notice" %></li>
 
       <% end %>
       <li><%= link_to "Home", root_path, class: "btn success" %></li>

@@ -13,16 +13,24 @@ div {
 } */
 
 .user-prof-link {
-  color: #D17519;
+  color: #E5E4E2;
   font-size: 17px;
 }
 
-body > div > div.row.information > h2 > a {
-  color: yellow;
+body > div > div.row.information > h1 > a {
+  color: #E5E4E2;
 }
 
 body > div > div.row.information > h2 {
   color: #E1E1E1;
+}
+
+body > div > div > h2 {
+  color: #E5E4E2;
+}
+
+body > div > h2 {
+  color: #E5E4E2;
 }
 
 body > div > div.row.information > h3 {
@@ -32,4 +40,46 @@ body > div > div.row.information > h3 {
 body > div > div.row.information > a.button.tiny.edit {
   margin-right: auto;
   margin-left: 50px !important;
+}
+
+body > div > a.button.tiny.edit {
+  /* vertical-align: text-top; */
+}
+
+#team-show-panel {
+  background-color: #76ADDA;
+  border-color: gray;
+}
+
+#comment {
+  background-color: #76ADDA;
+  border-color: gray;
+  width: 80%;
+  margin-left: 100px;
+}
+
+#edit-delete-comment-buttons {
+  margin-left: 100px;
+}
+
+textarea#styled {
+  /* width: 600px; */
+	height: 150px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+#back-button {
+  margin-left: 520px;
+}
+
+#edit-delete-team-buttons {
+  margin-left: 75px;
+}
+
+body > div > div.alert-box.notice {
+  padding: none;
 }
