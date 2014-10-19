@@ -1,18 +1,18 @@
 <div class="dream-home"><span style="color: rgba(0,0,0,0)">.</span>
 
-<div class="row information">
-  <h1>Featured Teams</h1>
-  <ul>
-    <% @teams.each do |team| %>
-    <div class="panel radius">
-      <li><%= link_to team.rank, team_path(team) %><br>
-      <%= "  #{team.about}" %></li>
-    </div>
+  <div class="row information">
+    <h1>Featured Teams</h1>
+    <ul>
+      <% @teams.each do |team| %>
+      <div class="panel radius">
+        <li><%= link_to team.rank, team_path(team) %><br>
+        <%= "  #{team.about}" %></li>
+      </div>
 
-    <% end %>
-  </ul>
-  <!-- This needs to be set so that if logged in can see 'create form' -->
-    <%= link_to "Create a Team", new_team_path, class: "button" %>
+      <% end %>
+    </ul>
+    <!-- This needs to be set so that if logged in can see 'create form' -->
+      <a><%= link_to "Create a Team", new_team_path, class: "button" %></a>
 
-</div>
+  </div>
 </div>

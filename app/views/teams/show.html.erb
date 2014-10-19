@@ -1,6 +1,6 @@
 <div class="row information">
   <h1 style="text-align: center;"><%= @team.user.summoner_name %>'s Team</h1>
-  <h2>Team Owner: <%= link_to "#{@team.user.summoner_name}", user_path %></h2>
+  <h2>Team Owner: <%= link_to "#{@team.user.summoner_name}", user_path(@team.user) %></h2>
   <h3><%= @team.rank %></h3>
 
   <p>
