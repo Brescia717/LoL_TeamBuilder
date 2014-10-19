@@ -1,4 +1,21 @@
 body > div > div > aside > ul > li.lolking_profile_link > a {
-  color: #D17519;
+  color: silver;
   font-style: underline;
+}
+
+body > div > div > aside > h1 {
+  align: center !important;
+}
+
+body > div > div > a.upvote.button.success.tiny.button:hover {
+  background-color: green !important;
+}
+
+body > div > div > a.downvote.button.alert.tiny.button:hover {
+  background-color: red !important;
+
+}
+
+body > div > div > aside > ul > li {
+  color: silver;
 }

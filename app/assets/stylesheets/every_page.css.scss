@@ -2,17 +2,28 @@ body {
   background-color: #4682B4 !important;
 }
 
+/* body > div > .row.information {
+  color: #DAA376;
+} */
+
+.button {
+  background-color: #D17519 !important;
+}
+
+.button.tiny {
+  background-color: #D17519
+}
+
+/* _nav bar */
+body > div > nav > section > ul > li:nth-child(1) > a {
+  background-color: #008cba !important;
+}
+
 body > div > div > ul > li > a {
   color: white;
 }
 
-body > div > div > ul {
-  background-color: #1A354F;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+
 
 /* body > div > div > a.button {
   background-color: #D17519;
@@ -30,7 +41,3 @@ body > div > div.alert-box.notice {
 /* #new_user > div:nth-child(6) > input {
   background-color: #D17519;
 } */
-
-body > div > div > ul > li {
-  color: gray;
-}

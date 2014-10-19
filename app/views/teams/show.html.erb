@@ -11,14 +11,15 @@
     Primary Role: <%= @team.user.primary_role.capitalize %><br />
     Secondary Role: (<%= @team.user.secondary_role.capitalize %>)
   </p>
-
-  <% if current_user == @team.user %>
-    <%= link_to "Edit", edit_team_path, class: "button tiny edit" %>
-    <%= link_to "Delete", team_path,
-          method: :delete,
-          data: { confirm: 'Are you sure you want to delete this team?' },
-          class: "button tiny delete" %><br>
-  <% end %>
+  <!-- <div class="clearfix"> -->
+    <% if current_user == @team.user %>
+      <%= link_to "Edit", edit_team_path, class: "button left tiny edit" %>
+      <%= link_to "Delete", team_path,
+            method: :delete,
+            data: { confirm: 'Are you sure you want to delete this team?' },
+            class: "button tiny delete" %><br>
+    <% end %>
+  </div>
 
 </div>
 <hr>

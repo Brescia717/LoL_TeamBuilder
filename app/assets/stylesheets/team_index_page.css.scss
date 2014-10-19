@@ -2,3 +2,30 @@ body > div > div.row.information > a {
   margin-left: 400px;
   background-color: #D17519;
 }
+
+body > div > div > ul > li {
+  color: gray;
+}
+
+body > div > div> div > ul {
+  background-color: #1A354F;
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  /* width: 500px; */
+}
+
+.dream-home {
+  background-image: url("/assets/Frost-skins-and-champions-league-of-legends-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: relative;
+  height: 1000px;
+}
+
+body > div > div > div > h1 {
+  text-align: center;
+  color: white;
+}

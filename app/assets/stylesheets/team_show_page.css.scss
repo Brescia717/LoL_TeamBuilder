@@ -2,9 +2,15 @@
   background-color: #D17519;
 } */
 
-#new_comment > input {
+/* #new_comment > input {
   background-color: #D17519;
-}
+} */
+/*
+div {
+  background-image: url("/assets/Frost-skins-and-champions-league-of-legends-wallpaper.jpg");
+  background-size: 100%;
+
+} */
 
 .user-prof-link {
   color: #D17519;
@@ -12,5 +18,19 @@
 }
 
 body > div > div.row.information > h2 > a {
+  color: yellow;
+}
+
+body > div > div.row.information > h2 {
   color: #E1E1E1;
+}
+
+body > div > div.row.information > h3 {
+  color: #E5E4E2;
+}
+
+body > div > div.row.information > a.button.tiny.edit {
+  margin-right: auto;
+  margin-left: 50px !important;
+
 }
