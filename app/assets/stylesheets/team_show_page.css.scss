@@ -1,16 +1,8 @@
-/* body > div > div:nth-child(6) > div > a {
-  background-color: #D17519;
-} */
-
-/* #new_comment > input {
-  background-color: #D17519;
-} */
-/*
-div {
-  background-image: url("/assets/Frost-skins-and-champions-league-of-legends-wallpaper.jpg");
-  background-size: 100%;
-
-} */
+.custom-panel{
+  @mixin custom-panel ($panel-pg){
+    $bg: orange
+  }
+}
 
 .user-prof-link {
   color: #E5E4E2;
@@ -26,7 +18,7 @@ body > div > div > div.row.information > h2 {
 }
 
 body > div > div > div > h2 {
-  color: #E5E4E2;
+  color: white;
 }
 
 body > div > div > h2 {
@@ -49,6 +41,16 @@ body > div > div > a.button.tiny.edit {
 #team-show-panel {
   background-color: #76ADDA;
   border-color: gray;
+}
+
+.all-comments {
+  width: 80%;
+  margin-left: 100px;
+}
+
+.add-comments {
+  width: 80%;
+  margin-left: 80px;
 }
 
 #comment {
