@@ -27,7 +27,7 @@
 <div class="row">
     <!-- <div class="large-offset-1 large-10 columns reviews"> -->
       <% if @comment %>
-      <h2 class="panel all-comments" style="text-align: center;"> All Comments For <%= @team.user.summoner_name %>'s Team </h2>
+      <h3 class="panel all-comments" style="text-align: center;"> All Comments For <%= @team.user.summoner_name %>'s Team </h3>
         <% @comments.each do |comment| %>
           <div class="title">
             <div class="panel" id="comment">
@@ -59,7 +59,7 @@
 
   <div class="row">
     <div class="large-offset-1 large-10 columns write">
-    <h2 class="panel add-comments">Write A Comment For <%= @team.user.summoner_name %>'s Team</h2>
+    <h3 class="panel add-comments" style="text-align: center;">Write A Comment For <%= @team.user.summoner_name %>'s Team</h3>
 
     <% if current_user %>
       <%= form_for [@team, @comment] do |f| %>

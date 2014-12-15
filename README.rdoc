@@ -5,24 +5,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+ruby 2.0.0
 
-* System dependencies
+rake db:setup
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This app is still in development. The functionality of this is for a user
+to be able to connect with other League of Legends players who are of similar
+rank, times they are available, and find people to fill specific roles in order
+to build a team in a more structured way than Riot's Team Builder.

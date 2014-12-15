@@ -1,6 +1,6 @@
-# require 'lol'
-#
-# client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
+require 'lol'
+
+client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
 
 ### Sets up Runes ###
 # all_runes = client.static.rune.get
