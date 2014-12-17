@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @bios = @user.bios
+    @bio = Bio.new
     @likes = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
     @percentage_likes=

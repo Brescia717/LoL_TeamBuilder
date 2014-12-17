@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :teams
   has_many :comments
   has_many :votes
+  has_many :bios
 
   def admin?
     admin == true
