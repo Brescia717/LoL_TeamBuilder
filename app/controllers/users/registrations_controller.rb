@@ -1,6 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  require 'net/http'
-
   prepend_before_filter :require_no_authentication, only: [ :new, :create, :cancel ]
   prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy]
 
@@ -32,12 +30,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
       ### URL fetch goes here ###
-      # url = URI.parse('http://www.lolking.net/')
-      # req = Net::HTTP::Get.new(url.to_s)
-      # res = Net::HTTP.start(url.host, url.port) {|http|
-      #   http.request(req)
-      # }
-      # puts = res.body
     else
       clean_up_passwords resource
       @validatable = devise_mapping.validatable?
