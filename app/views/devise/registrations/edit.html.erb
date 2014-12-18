@@ -19,9 +19,6 @@
   <div><%= f.label :secondary_role %><br />
   <%= f.text_field :secondary_role %></div>
 
-  <div><%= f.label :lolking_profile_link %><br />
-  <%= f.text_field :lolking_profile_link %></div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
