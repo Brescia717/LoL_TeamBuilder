@@ -10,10 +10,20 @@ class UsersController < ApplicationController
     client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
 
     @user = User.find(params[:id])
+<<<<<<< HEAD
     summoner_id = client.summoner.by_name("#{@user.summoner_name}").first.id
     @lolking_profile_url = "http://www.lolking.net/summoner/na/#{summoner_id}"
     @bios = @user.bios
     @bio = Bio.new
+=======
+<<<<<<< HEAD
+    @bios = @user.bios
+    @bio = Bio.new
+=======
+    summoner_id = client.summoner.by_name("#{@user.summoner_name}").first.id
+    @lolking_profile_url = "http://www.lolking.net/summoner/na/#{summoner_id}"
+>>>>>>> 48d6702222a1ee6f35906bfc4444aa812f540b27
+>>>>>>> 66593fef33b94ad2d6db2b431982a1605a588a3b
     @likes = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
     @percentage_likes=
