@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     summoner_id = client.summoner.by_name("#{@user.summoner_name}").first.id
     @lolking_profile_url = "http://www.lolking.net/summoner/na/#{summoner_id}"
+    @bios = @user.bios
+    @bio = Bio.new
     @likes = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
     @percentage_likes=

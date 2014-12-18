@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :teams do
     resources :comments
   end
-  resources :users, only: [:show, :update, :destroy] do
+  resources :users do
+    resources :bios
     member do
       put "like", to: "users#upvote"
       put "dislike", to: "users#downvote"

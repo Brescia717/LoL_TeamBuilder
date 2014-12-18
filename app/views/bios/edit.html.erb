@@ -1,0 +1,26 @@
+<div class="row information">
+  <h1><%= "Edit Your Bio" %></h1>
+
+  <% if current_user %>
+  <%= form_for [@bio.user, @bio] do |f| %>
+  <% if @bio.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@bio.errors.count, "error") %> prohibited
+      this review from being saved:</h2>
+      <ul>
+        <% @bio.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p id="body-tag">
+      <%= f.label :body  %><br>
+      <%= f.text_field :body %>
+    </p>
+
+    <%= f.submit "Update Bio", class: "button" %>
+    <% end %>
+    <% end %>
+
+  </div>
