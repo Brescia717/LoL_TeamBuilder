@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009193124) do
+ActiveRecord::Schema.define(version: 20141217194426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bios", force: true do |t|
+    t.text     "body",       null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.text     "body",       null: false
@@ -51,7 +58,6 @@ ActiveRecord::Schema.define(version: 20141009193124) do
     t.string   "summoner_name"
     t.string   "primary_role"
     t.string   "secondary_role"
-    t.string   "lolking_profile_link"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

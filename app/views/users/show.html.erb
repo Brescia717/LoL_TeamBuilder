@@ -13,7 +13,7 @@
           Secondary Role:  <tag class="info-for-vcard"><%= "#{@user.secondary_role.capitalize}" %></tag>
         </li>
         <li class="lolking_profile_link">
-          <u><%= link_to "LoLKing Profile", @user.lolking_profile_link %></u>
+          <u><%= link_to "LoLKing Profile", @lolking_profile_url %></u>
         </li>
         <% if @user == current_user %>
           <li class="email">
@@ -21,6 +21,47 @@
           </li>
         <% end %>
       </ul>
+
+      <% if @bio %>
+        <% @bios.each do |bio| %>
+          <ul class="panel callout radius">
+            Bio: <tag class="info-for-vcard"><%= bio.body %></tag>
+          </ul>
+          <div id="edit-delete-bio-buttons">
+            <% if @user == current_user %>
+              <%= link_to 'Edit', edit_user_bio_path(@user, bio),
+                class: "button tiny edit" %>
+              <%= link_to 'Delete', user_bio_path(@user, bio),
+                method: :delete,
+                data: {confirm: 'Are you sure you want to delete bio?'},
+                class: "button tiny delete" %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if current_user == @user && @bios.count < 1 %>
+          <%= form_for [@user, @bio] do |f| %>
+            <% if @bio.errors.any? %>
+              <div id="error_explanation">
+              <h2><%= pluralize(@bio.errors.count, "error") %> prohibited
+                this bio from being saved:</h2>
+              <ul>
+                <% @bio.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+              </div>
+            <% end %>
+
+            <p>
+              <%= f.label :body, class: 'label' %><br>
+              <%= f.text_area :body, rows: '10' %>
+            </p>
+
+            <%= f.submit 'Add Bio', class: "button tiny" %>
+          <% end %>
+        <% end %>
+      <% end %>
   </aside>
   <hr>
   <div id="like-dislike-buttons">
@@ -40,5 +81,4 @@
     <%= " - #{@percentage_likes}" %>
   </div>
 </div>
-
 </div>

@@ -8,7 +8,5 @@ class AddUsernameToUsers < ActiveRecord::Migration
     add_index  :users, :summoner_id, unique: true
     add_column :users, :primary_role, :string
     add_column :users, :secondary_role, :string
-    add_column :users, :lolking_profile_link, :string
-    add_index  :users, :lolking_profile_link, unique: true
   end
 end
