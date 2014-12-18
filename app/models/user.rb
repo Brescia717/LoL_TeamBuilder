@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   validates :summoner_name, presence: true, uniqueness: true
   validates :primary_role, presence: true
   validates :secondary_role, presence: true
-  validates :lolking_profile_link, presence: true
 
   has_many :teams
   has_many :comments

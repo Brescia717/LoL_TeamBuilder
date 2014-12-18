@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20141217194426) do
     t.string   "summoner_name"
     t.string   "primary_role"
     t.string   "secondary_role"
-    t.string   "lolking_profile_link"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

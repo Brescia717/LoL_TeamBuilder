@@ -5,6 +5,5 @@ class AddUsernameToUsers < ActiveRecord::Migration
     add_column :users, :summoner_name, :string
     add_column :users, :primary_role, :string
     add_column :users, :secondary_role, :string
-    add_column :users, :lolking_profile_link, :string
   end
 end
