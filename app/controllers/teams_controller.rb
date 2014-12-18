@@ -1,11 +1,32 @@
 class TeamsController < ApplicationController
+  def call_client
+    require 'lol'
+    @client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
+  end
+
   def index
     @teams = Team.all
+    call_client
+    @team_data = []
+    @teams.each do |team|
+      summoner_id = @client.summoner.by_name(team.user.summoner_name).first.id
+      league_stats = @client.league.get(summoner_id.to_i).first[1][0]
+      id = team.id
+      @user = User.find(team.user)
+      tier = league_stats.tier
+      about = team.about
+      creator = team.user.summoner_name
+      @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
+    end
   end
 
   def show
     @team = Team.find(params[:id])
-    # @user = User.find(params[:user_id])
+    @user = @team.user
+    call_client
+    summoner_id = @client.summoner.by_name("#{@user.summoner_name}").first.id
+    league_stats = @client.league.get(summoner_id.to_i).first[1][0]
+    @tier = league_stats.tier
     @comments = @team.comments
     @comment = Comment.new
   end

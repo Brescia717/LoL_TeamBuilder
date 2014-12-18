@@ -3,10 +3,11 @@
   <div class="row information">
     <h1>Featured Teams</h1>
     <ul>
-      <% @teams.each do |team| %>
+      <% @team_data.each do |team| %>
       <div class="panel radius">
-        <li><%= link_to team.rank, team_path(team) %><br>
-        <%= "  #{team.about}" %></li>
+        <li><%= link_to "#{team[:tier]}", team_path(team) %><br>
+          Created by: <%= link_to "#{team[:creator]}", user_path(@user) %><br>
+        <%= "  #{team[:about]}" %></li>
       </div>
 
       <% end %>
