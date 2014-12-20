@@ -13,6 +13,8 @@
       <div><%= f.label :summoner_name %><br />
       <%= f.text_field :summoner_name %></div>
 
+      <div><%= f.hidden_field :summoner_id, :value => @user.summoner_id %></div>
+
       <div><%= f.label :primary_role %><br />
       <%= f.text_field :primary_role %></div>
 
