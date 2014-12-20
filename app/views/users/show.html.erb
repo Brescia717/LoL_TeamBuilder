@@ -16,7 +16,7 @@
           Secondary Role:  <tag class="info-for-vcard"><%= "#{@user.secondary_role.capitalize}" %></tag>
         </li>
         <li class="lolking_profile_link">
-          <u><%= link_to "LoLKing Profile", @lolking_profile_url %></u>
+          <u><%= link_to "LoLKing Profile", @user.lolking_profile_url %></u>
         </li>
         <% if @user == current_user %>
           <li class="email">

@@ -19,12 +19,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     resource_saved = resource.save
     yield resource if block_given?
+    ### URL fetch ###
     def fetch_summoner_id(summoner_name)
       require 'lol'
       client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
       client.summoner.by_name(summoner_name).first.id
     end
     @user.summoner_id = fetch_summoner_id(@user.summoner_name)
+    @user.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@user.summoner_id}"
+    
     if resource_saved
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
@@ -35,8 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
-      ### URL fetch goes here ###
-
     else
       clean_up_passwords resource
       @validatable = devise_mapping.validatable?

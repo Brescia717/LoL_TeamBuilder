@@ -57,11 +57,13 @@ ActiveRecord::Schema.define(version: 20141217194426) do
     t.string   "username"
     t.string   "summoner_name"
     t.integer  "summoner_id"
+    t.string   "lolking_profile_url"
     t.string   "primary_role"
     t.string   "secondary_role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["lolking_profile_url"], name: "index_users_on_lolking_profile_url", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["summoner_id"], name: "index_users_on_summoner_id", unique: true, using: :btree
   add_index "users", ["summoner_name"], name: "index_users_on_summoner_name", unique: true, using: :btree
