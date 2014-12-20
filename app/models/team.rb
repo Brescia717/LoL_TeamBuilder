@@ -3,9 +3,9 @@ class Team < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :about, presence: true
-  validates :rank, presence: true
-  validates :primary_role, presence: true
-  validates :secondary_role, presence: true
+  # validates :rank, presence: true
+  # validates :primary_role, presence: true
+  # validates :secondary_role, presence: true
 
   belongs_to :user
   has_many :comments

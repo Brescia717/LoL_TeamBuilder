@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   def call_client
     require 'lol'
-    @client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
+    @client = Lol::Client.new(ENV['LOL_API'], { region: 'na', redis: "redis://localhost:6379", ttl: 900 })
   end
 
   def index
@@ -9,10 +9,10 @@ class TeamsController < ApplicationController
     call_client
     @team_data = []
     @teams.each do |team|
-      summoner_id = @client.summoner.by_name(team.user.summoner_name).first.id
-      league_stats = @client.league.get(summoner_id.to_i).first[1][0]
-      id = team.id
       @user = User.find(team.user)
+      # summoner_id = @client.summoner.by_name(team.user.summoner_name).first.id
+      league_stats = @client.league.get(team.user.summoner_id).first[1][0]
+      id = team.id
       tier = league_stats.tier
       about = team.about
       creator = team.user.summoner_name
@@ -24,8 +24,8 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @user = @team.user
     call_client
-    summoner_id = @client.summoner.by_name("#{@user.summoner_name}").first.id
-    league_stats = @client.league.get(summoner_id.to_i).first[1][0]
+    # summoner_id = @client.summoner.by_name("#{@user.summoner_name}").first.id
+    league_stats = @client.league.get(@team.user.summoner_id).first[1][0]
     @tier = league_stats.tier
     @comments = @team.comments
     @comment = Comment.new
@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
     @team.user = current_user
 
     if @team.save
-      redirect_to @team ## This will be redirect_to @team
+      redirect_to @team
     else
       flash[:notice] = "You need to sign in to create a team."
       render 'new'
@@ -87,8 +87,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:about, :rank, :primary_role,
-                                 :secondary_role)
+    params.require(:team).permit(:about)
   end
 
 end

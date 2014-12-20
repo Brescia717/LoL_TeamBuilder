@@ -8,8 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @bios = @user.bios
     @bio = Bio.new
+
     require 'lol'
-    @client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
+    @client = Lol::Client.new(ENV['LOL_API'], {region: 'na', redis: "redis://localhost:6379", ttl: 900 })
+
     league_stats = @client.league.get(@user.summoner_id).first[1][0]
     @tier = league_stats.tier
     # @division = league_stats.entries.first.division
