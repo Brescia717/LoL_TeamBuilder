@@ -32,11 +32,8 @@ ActiveRecord::Schema.define(version: 20141217194426) do
   end
 
   create_table "teams", force: true do |t|
-    t.integer  "user_id",        null: false
+    t.integer  "user_id",    null: false
     t.text     "about"
-    t.string   "rank",           null: false
-    t.string   "primary_role",   null: false
-    t.string   "secondary_role", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,12 +53,17 @@ ActiveRecord::Schema.define(version: 20141217194426) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "summoner_name"
+    t.integer  "summoner_id"
+    t.string   "lolking_profile_url"
     t.string   "primary_role"
     t.string   "secondary_role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["lolking_profile_url"], name: "index_users_on_lolking_profile_url", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["summoner_id"], name: "index_users_on_summoner_id", unique: true, using: :btree
+  add_index "users", ["summoner_name"], name: "index_users_on_summoner_name", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|

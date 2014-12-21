@@ -1,11 +1,23 @@
 class TeamsController < ApplicationController
   def index
     @teams = Team.all
+    @team_data = []
+    @teams.each do |team|
+      @user = User.find(team.user)
+      league_stats = $client.league.get(team.user.summoner_id).first[1][0]
+      id = team.id
+      tier = league_stats.tier
+      about = team.about
+      creator = team.user.summoner_name
+      @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
+    end
   end
 
   def show
     @team = Team.find(params[:id])
-    # @user = User.find(params[:user_id])
+    @user = @team.user
+    # league_stats = $client.league.get(@team.user.summoner_id).first[1][0]
+    @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
     @comments = @team.comments
     @comment = Comment.new
   end
@@ -19,7 +31,7 @@ class TeamsController < ApplicationController
     @team.user = current_user
 
     if @team.save
-      redirect_to @team ## This will be redirect_to @team
+      redirect_to @team
     else
       flash[:notice] = "You need to sign in to create a team."
       render 'new'
@@ -66,8 +78,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:about, :rank, :primary_role,
-                                 :secondary_role)
+    params.require(:team).permit(:about)
   end
 
 end
