@@ -16,7 +16,7 @@
     <% end %>
     <p id="body-tag">
       <%= f.label :body  %><br>
-      <%= f.text_field :body %>
+      <%= f.text_area :body, rows: '10' %>
     </p>
 
     <%= f.submit "Update Bio", class: "button" %>

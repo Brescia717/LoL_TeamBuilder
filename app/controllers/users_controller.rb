@@ -5,18 +5,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    require 'lol'
-
-    client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
-
     @user = User.find(params[:id])
-<<<<<<< HEAD
     @bios = @user.bios
     @bio = Bio.new
-=======
-    summoner_id = client.summoner.by_name("#{@user.summoner_name}").first.id
-    @lolking_profile_url = "http://www.lolking.net/summoner/na/#{summoner_id}"
->>>>>>> 48d6702222a1ee6f35906bfc4444aa812f540b27
+
+    # require 'lol'
+    # @client = Lol::Client.new(ENV['LOL_API'], {region: 'na', redis: "redis://localhost:6379", ttl: 900 })
+
+    # league_stats = $client.league.get(@user.summoner_id).first[1][0]
+    @tier = $client.league.get(@user.summoner_id).first[1][0].tier
+    # @division = league_stats.entries.first.division
     @likes = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
     @percentage_likes=
