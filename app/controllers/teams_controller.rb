@@ -1,6 +1,8 @@
 class TeamsController < ApplicationController
   def call_client
     require 'lol'
+    # require 'redis'
+    # Redis.current = Redis.new(host: 'localhost', port: 6379)
     @client = Lol::Client.new(ENV['LOL_API'], { region: 'na', redis: "redis://localhost:6379", ttl: 900 })
   end
 

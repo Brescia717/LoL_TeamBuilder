@@ -69,4 +69,5 @@ group :development, :test do
   gem 'email_spec'
   gem 'dotenv-rails'
   gem 'nyan-cat-formatter'
+  gem 'redis'
 end

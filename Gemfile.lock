@@ -302,6 +302,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.1.6)
   rails_12factor
+  redis
   rspec-rails
   ruby-lol
   sass-rails (~> 4.0.3)
