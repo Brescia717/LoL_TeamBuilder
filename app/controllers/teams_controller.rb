@@ -1,19 +1,10 @@
 class TeamsController < ApplicationController
-  def call_client
-    require 'lol'
-    # require 'redis'
-    # Redis.current = Redis.new(host: 'localhost', port: 6379)
-    @client = Lol::Client.new(ENV['LOL_API'], { region: 'na', redis: "redis://localhost:6379", ttl: 900 })
-  end
-
   def index
     @teams = Team.all
-    call_client
     @team_data = []
     @teams.each do |team|
       @user = User.find(team.user)
-      # summoner_id = @client.summoner.by_name(team.user.summoner_name).first.id
-      league_stats = @client.league.get(team.user.summoner_id).first[1][0]
+      league_stats = $client.league.get(team.user.summoner_id).first[1][0]
       id = team.id
       tier = league_stats.tier
       about = team.about
@@ -25,10 +16,8 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @user = @team.user
-    call_client
-    # summoner_id = @client.summoner.by_name("#{@user.summoner_name}").first.id
-    league_stats = @client.league.get(@team.user.summoner_id).first[1][0]
-    @tier = league_stats.tier
+    # league_stats = $client.league.get(@team.user.summoner_id).first[1][0]
+    @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
     @comments = @team.comments
     @comment = Comment.new
   end
