@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :bio do
+    body "I'm just a scrub."
   end
 end
