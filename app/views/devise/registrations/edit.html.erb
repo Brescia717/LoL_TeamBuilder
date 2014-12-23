@@ -14,10 +14,12 @@
   <%= f.text_field :summoner_name %></div>
 
   <div><%= f.label :primary_role %><br />
-  <%= f.text_field :primary_role %></div>
+    <%= select(:user, :primary_role, [["Top", "Top"],["Mid", "Mid"],
+    ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
 
   <div><%= f.label :secondary_role %><br />
-  <%= f.text_field :secondary_role %></div>
+    <%= select(:user, :secondary_role, [["Top", "Top"],["Mid", "Mid"],
+    ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
