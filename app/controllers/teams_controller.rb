@@ -4,9 +4,9 @@ class TeamsController < ApplicationController
     @team_data = []
     @teams.each do |team|
       @user = User.find(team.user)
-      league_stats = $client.league.get(team.user.summoner_id).first[1][0]
+      # league_stats = $client.league.get(team.user.summoner_id).first[1][0]
       id = team.id
-      tier = league_stats.tier
+      tier = @user.tier
       about = team.about
       creator = team.user.summoner_name
       @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @user = @team.user
     # league_stats = $client.league.get(@team.user.summoner_id).first[1][0]
-    @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
+    # @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
     @comments = @team.comments
     @comment = Comment.new
   end
