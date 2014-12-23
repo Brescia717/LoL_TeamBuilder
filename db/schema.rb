@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20141217194426) do
     t.string   "summoner_name"
     t.integer  "summoner_id"
     t.string   "lolking_profile_url"
+    t.string   "tier"
     t.string   "primary_role"
     t.string   "secondary_role"
   end
