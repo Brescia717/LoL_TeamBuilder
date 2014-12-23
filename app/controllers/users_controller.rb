@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @bios = @user.bios
     @bio = Bio.new
+    @user_teams = Team.all.where(:user_id => @user.id)
     # league_stats = $client.league.get(@user.summoner_id).first[1][0]
     # @tier = $client.league.get(@user.summoner_id).first[1][0].tier
     # @division = league_stats.entries.first.division
