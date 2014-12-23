@@ -67,13 +67,14 @@
       <% end %>
   </aside>
   <hr>
+
   <div id="like-dislike-buttons">
     <% if current_user != @user %>
     <%= link_to 'Like', like_user_path,
-          method: :put, class: "upvote button success tiny" %>
+    method: :put, class: "upvote button success tiny" %>
 
     <%= link_to 'Dislike', dislike_user_path,
-          method: :put, class: "downvote button alert tiny" %><br>
+    method: :put, class: "downvote button alert tiny" %><br>
     <% end %>
 
     <%= link_to "Back", teams_path, class: "button tiny" %>
@@ -83,5 +84,19 @@
     <tag class="dislikes"><%= "#{@dislikes} Downvotes" %></tag>
     <%= " - #{@percentage_likes}" %>
   </div>
+  
+  <h3><%= "#{@user.summoner_name}'s Teams" %></h3>
+  <ul>
+    <% @user_teams.each do |team| %>
+    <div class="panel radius">
+      <li><%= link_to "#{team.user.tier}", team_path(team) %><br>
+        Created by: <%= "#{team.user.summoner_name}" %><br>
+        <%= "  #{team[:about]}" %></li>
+    </div>
+    <% end %>
+  </ul>
+  <hr>
+
+
 </div>
 </div>
