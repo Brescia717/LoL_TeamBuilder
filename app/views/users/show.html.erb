@@ -1,7 +1,7 @@
 <div class="user-show"><span style="color: rgba(0,0,0,0)">.</span>
 <div class="row information">
 
-  <h1 style="text-align: center;"><%= "#{@user.summoner_name}'s Profile" %></h1><br />
+  <h1 id="user-show-header"><%= "#{@user.summoner_name}'s Profile" %></h1><br />
 
   <aside class="large-4 columns user-sidebar">
 
@@ -76,15 +76,13 @@
     <%= link_to 'Dislike', dislike_user_path,
     method: :put, class: "downvote button alert tiny" %><br>
     <% end %>
-
-    <%= link_to "Back", teams_path, class: "button tiny" %>
   </div>
   <div class="vote-score">
     <tag class="likes"><%= "#{@likes} Upvotes / " %></tag>
     <tag class="dislikes"><%= "#{@dislikes} Downvotes" %></tag>
     <%= " - #{@percentage_likes}" %>
   </div>
-  
+
   <h3><%= "#{@user.summoner_name}'s Teams" %></h3>
   <ul>
     <% @user_teams.each do |team| %>
@@ -96,7 +94,9 @@
     <% end %>
   </ul>
   <hr>
-
+  <div class="back-button">
+    <%= link_to "Back", teams_path, class: "button tiny" %>
+  </div>
 
 </div>
 </div>

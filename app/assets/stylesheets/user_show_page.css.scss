@@ -18,6 +18,10 @@ body > div > div > aside > ul > li.lolking_profile_link > u > a {
 
 .vote-score { color: white; margin-left: 35px; }
 
+h1 > #user-show-header {
+  text-align: center;
+}
+
 h3 {
   text-align: center;
   background-color: #1A354F;
@@ -29,3 +33,7 @@ h3 {
   padding-bottom: 5px;
   width: 700px;
 }
+/* 
+.back-button > a {
+  position: relative;
+} */

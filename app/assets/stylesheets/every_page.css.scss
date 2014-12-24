@@ -25,11 +25,12 @@ body > div > div > ul > li > a {
 
 .header {
 }
+
 /* user_show_page */
 .user-show {
     background-image: image-url("woad-ash.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: relative;
     margin-top: -10px;
     min-height: 700px;
