@@ -11,7 +11,8 @@ body > div > div > ul > li {
 #team-index-list {
   background-color: #1A354F;
   margin-top: 90px;
-  margin-left: 150px;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 20px;
@@ -37,5 +38,5 @@ body > div > div > div > a.button {
 }
 
 #create-team {
-  margin-left: 400px;
+  text-align: center;
 }
