@@ -75,12 +75,13 @@
           </div>
         <% end %>
 
-          <p>
+          <p id="comment-box">
             <%= f.label :body  %><br>
-            <%= f.text_field :body %>
+            <%= f.text_area :body, rows: '5' %>
           </p>
-
-          <%= f.submit 'Create Comment', class: "button" %>
+          <div id="create-comment-button">
+            <%= f.submit 'Create Comment', class: "button" %>
+          </div>
         <% end %>
       <% end %>
 
@@ -91,7 +92,6 @@
 
     </div>
   </div>
-  <hr>
-  <%= link_to "Back", teams_path, class: "button tiny", id: "back-button" %>
+
 </div>
 </div>

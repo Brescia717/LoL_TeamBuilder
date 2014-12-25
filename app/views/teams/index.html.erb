@@ -2,18 +2,20 @@
 
   <div class="row information">
     <h1>Featured Teams</h1>
-    <ul>
+    <ul id="team-index-list">
       <% @team_data.each do |team| %>
       <div class="panel radius">
+        <div id="team-index-list-item">
         <li><%= link_to "#{team[:tier]}", team_path(team) %><br>
           Created by: <%= link_to "#{team[:creator]}", user_path(@user) %><br>
         <%= "  #{team[:about]}" %></li>
       </div>
+      </div>
 
       <% end %>
     </ul>
-
-      <%= link_to "Create a Team", new_team_path, class: "button", id: "create-team" %>
-
+    <div id="create-team">
+      <%= link_to "Create a Team", new_team_path, class: "button" %>
+    </div>
   </div>
 </div>

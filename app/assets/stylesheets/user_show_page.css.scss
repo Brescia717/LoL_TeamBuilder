@@ -1,3 +1,38 @@
+/* user_show_page */
+
+.user-show {
+  background: image-url("woad-ash.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* background-image: image-url("woad-ash.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: relative;
+  margin-top: -10px;
+  min-height: 700px;
+  width: auto; */
+}
+
+#like-dislike-buttons > a {
+  margin-left:35px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body > div > div.alert-box.notice {
+  background-color: #D17519;
+  margin-bottom: 0px !important;
+}
+
+hr {
+  clear: both;
+  visibility: hidden;
+}
+
 body > div > div > aside > h1 {
   align: center !important;
 }
@@ -18,14 +53,36 @@ body > div > div > aside > ul > li.lolking_profile_link > u > a {
 
 .vote-score { color: white; margin-left: 35px; }
 
-h3 {
+h1 > #user-show-header {
+  text-align: center;
+}
+
+#edit-delete-bio-buttons {
+  margin-left: 20px;
+}
+
+#user-teams-header {
   text-align: center;
   background-color: #1A354F;
-  margin-top: 90px;
-  margin-bottom: -70px;
-  margin-left: 150px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 700px;
+}
+
+#user-teams-list {
+  background-color: #1A354F;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
   padding-bottom: 5px;
   width: 700px;
 }
