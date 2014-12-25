@@ -77,14 +77,15 @@
     method: :put, class: "downvote button alert tiny" %><br>
     <% end %>
   </div>
+
   <div class="vote-score">
     <tag class="likes"><%= "#{@likes} Upvotes / " %></tag>
     <tag class="dislikes"><%= "#{@dislikes} Downvotes" %></tag>
     <%= " - #{@percentage_likes}" %>
   </div>
 
-  <h3><%= "#{@user.summoner_name}'s Teams" %></h3>
-  <ul>
+  <h3 id="user-teams-header"><%= "#{@user.summoner_name}'s Teams" %></h3>
+  <ul id="user-teams-list">
     <% @user_teams.each do |team| %>
     <div class="panel radius">
       <li><%= link_to "#{team.user.tier}", team_path(team) %><br>
@@ -94,7 +95,8 @@
     <% end %>
   </ul>
   <hr>
-  <div class="back-button">
+
+  <div id="back-button">
     <%= link_to "Back", teams_path, class: "button tiny" %>
   </div>
 
