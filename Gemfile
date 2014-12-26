@@ -51,7 +51,6 @@ gem 'acts_as_votable'
 gem 'ruby-lol'
 gem 'unicorn'
 gem 'rails_12factor', group: :production
-gem 'redis'
 # gem 'semantic-ui-rails'
 # gem 'semantic-ui-sass', '~> 0.16.1.0'
 
@@ -70,4 +69,5 @@ group :development, :test do
   gem 'email_spec'
   gem 'dotenv-rails'
   gem 'nyan-cat-formatter'
+  gem 'redis'
 end
