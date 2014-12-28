@@ -51,6 +51,7 @@ gem 'acts_as_votable'
 gem 'ruby-lol'
 gem 'unicorn'
 gem 'rails_12factor', group: :production
+gem 'dalli'
 # gem 'semantic-ui-rails'
 # gem 'semantic-ui-sass', '~> 0.16.1.0'
 
