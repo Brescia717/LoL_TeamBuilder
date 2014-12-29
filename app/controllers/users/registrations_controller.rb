@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # end
     @user.summoner_id = $client.summoner.by_name(@user.summoner_name).first.id
     @user.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@user.summoner_id}"
-    @user.tier = $client.league.get(@user.summoner_id).first[1][0].tier
+    # @user.tier = $client.league.get(@user.summoner_id).first[1][0].tier
 
     if resource_saved
       if resource.active_for_authentication?

@@ -7,7 +7,7 @@
 
       <ul class="panel callout radius">
         <li class="rank">
-          Rank:  <tag class="info-for-vcard"><%= "#{@user.tier}" %></tag>
+          Rank:  <tag class="info-for-vcard"><%= "#{$client.league.get(@user.summoner_id).first[1][0].tier}" %></tag>
         </li>
         <li class="primary_role">
           Primary Role:  <tag class="info-for-vcard"><%= "#{@user.primary_role.capitalize}" %></tag>
