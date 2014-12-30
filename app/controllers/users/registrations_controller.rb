@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, only: [ :new, :create, :cancel ]
   prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy]
+  require 'httparty'
 
   # GET /resource/sign_up
   def new
@@ -16,6 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
+    @user.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{@user.summoner_name.gsub(/\s+/, "")}?api_key=f1bedfc7-74fd-45e8-b3b1-b1e7a6990413").first[1]['id']
+    @user.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@user.summoner_id}"
+    @user.tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@user.summoner_id}/entry?api_key=f1bedfc7-74fd-45e8-b3b1-b1e7a6990413").first[1][0]['tier']
 
     resource_saved = resource.save
     yield resource if block_given?
@@ -25,9 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #   client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
     #   client.summoner.by_name(summoner_name).first.id
     # end
-    @user.summoner_id = $client.summoner.by_name(@user.summoner_name).first.id
-    @user.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@user.summoner_id}"
-    # @user.tier = $client.league.get(@user.summoner_id).first[1][0].tier
+        # @user.tier = $client.league.get(@user.summoner_id).first[1][0].tier
 
     if resource_saved
       if resource.active_for_authentication?

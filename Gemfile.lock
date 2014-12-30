@@ -294,6 +294,7 @@ DEPENDENCIES
   fog
   font-awesome-rails
   foundation-rails
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
   launchy
