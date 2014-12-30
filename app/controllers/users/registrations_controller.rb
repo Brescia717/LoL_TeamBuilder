@@ -17,9 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    @user.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{@user.summoner_name.gsub(/\s+/, "")}?api_key=f1bedfc7-74fd-45e8-b3b1-b1e7a6990413").first[1]['id']
+    @user.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{@user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}").first[1]['id']
     @user.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@user.summoner_id}"
-    @user.tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@user.summoner_id}/entry?api_key=f1bedfc7-74fd-45e8-b3b1-b1e7a6990413").first[1][0]['tier']
+    @user.tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@user.summoner_id}/entry?api_key=#{ENV['LOL_API']}").first[1][0]['tier']
 
     resource_saved = resource.save
     yield resource if block_given?
