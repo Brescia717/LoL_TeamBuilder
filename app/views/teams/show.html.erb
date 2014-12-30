@@ -34,7 +34,7 @@
           <div class="title">
             <div class="panel" id="comment">
               <p>
-                Written by: <%= link_to comment.user.summoner_name.capitalize,
+                Written by: <%= link_to comment.user.summoner_name,
                                 user_path(comment.user), class: "user-prof-link" %>
               </p>
               <article class="comment-body">
