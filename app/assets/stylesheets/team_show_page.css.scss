@@ -90,9 +90,9 @@ body > div > div > a.button.tiny.edit {
     width: auto; */
 }
 
-#edit-delete-team-buttons > a.button.left.tiny.edit {
-  margin-right: 5px;
-  margin-left: 75px;
+#edit-delete-team-buttons {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 /* #back-button {
@@ -101,9 +101,6 @@ body > div > div > a.button.tiny.edit {
   margin-right: auto;
 } */
 
-#edit-delete-team-buttons {
-  margin-left: 75px;
-}
 
 body > div > div > div.alert-box.notice {
   padding: none;
