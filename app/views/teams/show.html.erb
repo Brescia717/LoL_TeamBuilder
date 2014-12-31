@@ -87,11 +87,13 @@
         <% end %>
       <% end %>
 
+
       <% if !current_user %>
+        <div id="not-logged-in-comment-button">
         <%= link_to 'If you want to leave a comment, please log in.',
             new_user_session_path, class: "button alert center" %>
+          </div>
       <% end %>
-
     </div>
   </div>
 
