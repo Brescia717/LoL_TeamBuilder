@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
       creator = team.user.summoner_name
       @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
     end
+    @tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD", 4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
   end
 
   def show
@@ -80,5 +81,4 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit(:about)
   end
-
 end
