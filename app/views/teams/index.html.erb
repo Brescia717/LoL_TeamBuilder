@@ -28,12 +28,6 @@
             Created by: <%= link_to "#{team[:creator]}", user_path(@user) %><br>
             <%= "  #{team[:about]}" %></li>
         </div>
-        <% elsif team[:tier] != @first || team[:tier] != @second || team[:tier] != @third %>
-        <div class="panel radius">
-          <li><%=  "#{team[:tier]}" %> -  You are not eligible for this team due to rank requirements.<br>
-            Created by: <%= link_to "#{team[:creator]}", user_path(@user) %><br>
-            <%= "  #{team[:about]}" %></li>
-          </div>
         <% end %>
       <% end %>
     </ul>
