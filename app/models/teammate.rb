@@ -1,8 +1,9 @@
 class Teammate < ActiveRecord::Base
   validates :team_id, presence: true
-  validates :user_id, presence: true
-  validates :member
+  validates :owner_id, presence: true
+  validates :member_id, presence: true
 
+  belongs_to :user
   belongs_to :teams
   has_many   :users
 end
