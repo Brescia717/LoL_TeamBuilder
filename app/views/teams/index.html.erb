@@ -19,13 +19,13 @@
         <% if team[:tier] == @first || team[:tier] == @second || team[:tier] == @third %>
         <div class="panel radius">
           <li><%= link_to "#{team[:tier]}", team_path(team) %><br>
-            Created by: <%= link_to "#{team[:creator]}", user_path(@user) %><br>
+            Created by: <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
           <%= "  #{team[:about]}" %></li>
         </div>
         <% elsif current_user == nil %>
         <div class="panel radius">
           <li><%= link_to "#{team[:tier]}", team_path(team) %><br>
-            Created by: <%= link_to "#{team[:creator]}", user_path(@user) %><br>
+            Created by: <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
             <%= "  #{team[:about]}" %></li>
         </div>
         <% end %>
