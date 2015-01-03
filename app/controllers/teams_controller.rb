@@ -12,6 +12,16 @@ class TeamsController < ApplicationController
       @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
     end
     @tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD", 4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
+    ### some logic for setting up eligible teams for current_user ###
+    if current_user
+      @tier_hash.each do |k,v|
+        if v == current_user.tier
+          @first  = @tier_hash[k-1]
+          @second = @tier_hash[k  ]
+          @third  = @tier_hash[k+1]
+        end
+      end
+    end
   end
 
   def show

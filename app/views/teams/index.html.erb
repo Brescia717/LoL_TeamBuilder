@@ -3,17 +3,6 @@
   <div class="row information">
     <h1>Featured Teams</h1>
     <ul id="team-index-list">
-      <!-- Some logic to set up valid teams for user -->
-      <% if current_user %>
-        <% @tier_hash.each do |k,v| %>
-          <% if v == current_user.tier %>
-            <% @first  = @tier_hash[k-1] %>
-            <% @second = @tier_hash[k  ] %>
-            <% @third  = @tier_hash[k+1] %>
-          <% end %>
-        <% end %>
-      <% end %>
-
       <!-- Displays teams based on user's tier -->
       <% @team_data.each do |team| %>
         <% if team[:tier] == @first || team[:tier] == @second || team[:tier] == @third %>
