@@ -9,7 +9,7 @@
     <p>
       <%= @team.about %><br />
       Primary Role: <%= @team.user.primary_role.capitalize %><br />
-      Secondary Role: (<%= @team.user.secondary_role.capitalize %>)
+      Secondary Role: <%= @team.user.secondary_role.capitalize %>
     </p>
   </div>
 </div>
@@ -34,7 +34,7 @@
           <div class="title">
             <div class="panel" id="comment">
               <p>
-                Written by: <%= link_to comment.user.summoner_name.capitalize,
+                Written by: <%= link_to comment.user.summoner_name,
                                 user_path(comment.user), class: "user-prof-link" %>
               </p>
               <article class="comment-body">
@@ -87,11 +87,13 @@
         <% end %>
       <% end %>
 
+
       <% if !current_user %>
+        <div id="not-logged-in-comment-button">
         <%= link_to 'If you want to leave a comment, please log in.',
             new_user_session_path, class: "button alert center" %>
+          </div>
       <% end %>
-
     </div>
   </div>
 
