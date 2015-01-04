@@ -1,2 +1,0 @@
-class FetchStatsController < ApplicationController
-end

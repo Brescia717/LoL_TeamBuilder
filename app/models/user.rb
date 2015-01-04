@@ -20,8 +20,12 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :bios
+  has_one  :stat
 
   def admin?
     admin == true
+  end
+
+  def stats_request
   end
 end

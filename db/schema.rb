@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217194426) do
+ActiveRecord::Schema.define(version: 20150103031436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 20141217194426) do
     t.integer  "team_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "stats", force: true do |t|
+    t.integer  "user_id",             null: false
+    t.integer  "summoner_id",         null: false
+    t.string   "lolking_profile_url", null: false
+    t.string   "tier",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teammates_tables", force: true do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+    t.string  "member",  null: false
   end
 
   create_table "teams", force: true do |t|

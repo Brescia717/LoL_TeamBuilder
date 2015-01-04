@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @stat = Stat.new
+    @stats = @user.stat
     @bios = @user.bios
     @bio = Bio.new
     @user_teams = Team.all.where(:user_id => @user.id)
