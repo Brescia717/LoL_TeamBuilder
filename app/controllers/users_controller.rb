@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     @bio = Bio.new
     @user_teams = Team.all.where(:user_id => @user.id)
     # league_stats = $client.league.get(@user.summoner_id).first[1][0]
-    @tier = @user.tier
     # @division = league_stats.entries.first.division
     # @user.tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@user.summoner_id}/entry?api_key=f1bedfc7-74fd-45e8-b3b1-b1e7a6990413").first[1][0]['tier']
     @likes = @user.get_likes.size

@@ -70,7 +70,7 @@
         <% end %>
       <% end %>
   </aside>
-  <% if @user == current_user %>
+  <% if @user == current_user && @stats.nil? == true %>
     <%= form_for [@user, @stat] do |f| %>
       <% if @stat.errors.any? %>
       <div id="error_explanation">
@@ -85,16 +85,17 @@
       <% end %>
 
       <p id="stats-box">
-
         <%= f.hidden_field :summoner_id %>
         <%= f.hidden_field :lolking_profile_url %>
         <%= f.hidden_field :tier %>
-
       </p>
+
       <div id="create-stats-button">
-        <%= f.submit 'Update Stats', class: "button" %>
+        <%= f.submit 'Create Stats', class: "button" %>
       </div>
     <% end %>
+  <% elsif @user == current_user && @stats.nil? == false %>
+    <%= link_to "Update Stats", edit_user_stat_path(@user, @stats), class: "button" %>
   <% end %>
   <hr>
 
