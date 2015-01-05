@@ -31,14 +31,24 @@ class StatsController < ApplicationController
 
   def update
     @stat = Stat.find(params[:id])
+    cache = ActiveSupport::Cache::MemoryStore.new
+    request_tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@stat.summoner_id}/entry?api_key=#{ENV['LOL_API']}").first[1][0]['tier']
+    cache.write("current_tier", request_tier)
+    current_tier = cache.fetch("current_tier")
 
-    if @stat.update(stat_params)
-      @stat.update_attributes({:tier => HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@stat.summoner_id}/entry?api_key=#{ENV['LOL_API']}").first[1][0]['tier'].to_s})
+    if current_tier.present? && current_tier != @stat.tier
+      @stat.update(stat_params)
+      @stat.update_attributes({:tier => current_tier})
       flash[:success] = "You have successfully updated your stats."
       redirect_to user_path(@stat.user)
+    elsif current_tier.present? && current_tier == @stat.tier
+      @stat.update(stat_params)
+      flash[:notice] = "Everything is up-to-date."
+      redirect_to user_path(current_user)
     else
-      flash[:notice] = "Please try again - save unsuccessfull."
-      redirect_to @user
+      # @stat.update(stat_params)
+      flash[:alert] = "Please try again - save unsuccessfull."
+      redirect_to user_path(current_user)
     end
   end
 
