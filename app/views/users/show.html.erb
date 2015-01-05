@@ -95,7 +95,10 @@
       </div>
     <% end %>
   <% elsif @user == current_user && @stats.nil? == false %>
-    <%= link_to "Update Stats", edit_user_stat_path(@user, @stats), class: "button" %>
+    <%= form_for [@user, @stats] do |f| %>
+      <%= f.hidden_field :tier %>
+      <%= f.submit "Update", class: "button" %>
+    <% end %>
   <% end %>
   <hr>
 

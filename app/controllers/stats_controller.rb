@@ -17,7 +17,7 @@ class StatsController < ApplicationController
     @stat.tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@stat.summoner_id}/entry?api_key=#{ENV['LOL_API']}").first[1][0]['tier']
     if @stat.summoner_id != nil && @stat.lolking_profile_url != nil && @stat.tier != nil
       @stat.save
-      flash[:success] = "Stats successfully updated!"
+      flash[:success] = "Stats successfully created!"
       redirect_to @user
     else
       flash[:notice] = "It didn't save, please try again."
@@ -27,20 +27,22 @@ class StatsController < ApplicationController
 
   def edit
     @stat = Stat.find(params[:id])
-    # @user = User.find(params[:id])
   end
 
   def update
     @stat = Stat.find(params[:id])
-    # @user = User.find(params[:id])
 
     if @stat.update(stat_params)
-      flash[:notice] = "You have successfully updated your stats."
+      @stat.update_attributes({:tier => HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@stat.summoner_id}/entry?api_key=#{ENV['LOL_API']}").first[1][0]['tier'].to_s})
+      flash[:success] = "You have successfully updated your stats."
       redirect_to user_path(@stat.user)
     else
       flash[:notice] = "Please try again - save unsuccessfull."
       redirect_to @user
     end
+  end
+
+  def show
   end
 
   private
