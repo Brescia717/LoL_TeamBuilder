@@ -1,0 +1,26 @@
+<% if current_user %>
+<%= form_for [@user, @stat] do |f| %>
+<% if @stat.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@stat.errors.count, "error") %> prohibited
+    these stats from being saved:</h2>
+    <ul>
+      <% @stat.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p id="stats-box">
+
+    <%= f.hidden_field :summoner_id %>
+    <%= f.hidden_field :lolking_profile_url %>
+    <%= f.hidden_field :tier %>
+
+  </p>
+  <div id="create-stats-button">
+    <%= f.submit 'Update Stats', class: "button" %>
+  </div>
+  <% end %>
+  <% end %>

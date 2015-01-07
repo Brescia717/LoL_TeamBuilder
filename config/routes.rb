@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :bios
+    resources :stats
     member do
       put "like", to: "users#upvote"
       put "dislike", to: "users#downvote"

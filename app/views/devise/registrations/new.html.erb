@@ -13,9 +13,6 @@
       <div><%= f.label :summoner_name %><br />
       <%= f.text_field :summoner_name %></div>
 
-      <div><%= f.hidden_field :summoner_id, :value => @user.summoner_id %></div>
-      <div><%= f.hidden_field :lolking_profile_url, :value => @user.lolking_profile_url %></div>
-
       <div><%= f.label :primary_role %><br />
       <%= select(:user, :primary_role, [["<Select a role>", nil],["Top", "Top"],["Mid", "Mid"],
         ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
