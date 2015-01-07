@@ -4,18 +4,19 @@ class TeamsController < ApplicationController
     @team_data = []
     @teams.each do |team|
       @user = User.find(team.user)
+      @stat = Stat.find(team.user.stat)
       # league_stats = $client.league.get(team.user.summoner_id).first[1][0]
       id = team.id
-      tier = @user.tier
+      tier = @stat.tier
       about = team.about
       creator = team.user.summoner_name
       @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
     end
     @tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD", 4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
     ### some logic for setting up eligible teams for current_user ###
-    if current_user
+    if current_user && current_user.stat.nil? == false
       @tier_hash.each do |k,v|
-        if v == current_user.tier
+        if v == current_user.stat.tier
           @first  = @tier_hash[k-1]
           @second = @tier_hash[k  ]
           @third  = @tier_hash[k+1]

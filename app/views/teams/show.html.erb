@@ -4,7 +4,7 @@
   <h1 class="panel callout radius" style="text-align: center;">
     <%= link_to "#{@team.user.summoner_name}'s Team", user_path(@team.user) %>
   </h1>
-  <h3><%= @team.user.tier %></h3>
+  <h3><%= @team.user.stat.tier %></h3>
   <div class="panel" id="team-show-panel">
     <p>
       <%= @team.about %><br />

@@ -7,7 +7,9 @@
 
       <ul class="panel callout radius">
         <li class="rank">
-          Rank:  <tag class="info-for-vcard"><%= "#{@tier}" %></tag>
+          <% if @stats.nil? == false %>
+          Rank:  <tag class="info-for-vcard"><%= "#{@stats.tier}" %></tag>
+          <% end %>
         </li>
         <li class="primary_role">
           Primary Role:  <tag class="info-for-vcard"><%= "#{@user.primary_role.capitalize}" %></tag>
@@ -16,7 +18,9 @@
           Secondary Role:  <tag class="info-for-vcard"><%= "#{@user.secondary_role.capitalize}" %></tag>
         </li>
         <li class="lolking_profile_link">
-          <u><%= link_to "LoLKing Profile", @user.lolking_profile_url %></u>
+          <% if @stats.nil? == false %>
+          <u><%= link_to "LoLKing Profile", @stats.lolking_profile_url %></u>
+          <% end %>
         </li>
         <% if @user == current_user %>
           <li class="email">
@@ -66,6 +70,36 @@
         <% end %>
       <% end %>
   </aside>
+  <% if @user == current_user && @stats.nil? == true %>
+    <%= form_for [@user, @stat] do |f| %>
+      <% if @stat.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@stat.errors.count, "error") %> prohibited
+          these stats from being saved:</h2>
+          <ul>
+            <% @stat.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p id="stats-box">
+        <%= f.hidden_field :summoner_id %>
+        <%= f.hidden_field :lolking_profile_url %>
+        <%= f.hidden_field :tier %>
+      </p>
+
+      <div id="create-stats-button">
+        <%= f.submit 'Create Stats', class: "button" %>
+      </div>
+    <% end %>
+  <% elsif @user == current_user && @stats.nil? == false %>
+    <%= form_for [@user, @stats] do |f| %>
+      <%= f.hidden_field :tier %>
+      <%= f.submit "Update", class: "button" %>
+    <% end %>
+  <% end %>
   <hr>
 
   <div id="like-dislike-buttons">
@@ -88,7 +122,7 @@
   <ul id="user-teams-list">
     <% @user_teams.each do |team| %>
     <div class="panel radius">
-      <li><%= link_to "#{team.user.tier}", team_path(team) %><br>
+      <li><%= link_to "#{team.user.stat.tier}", team_path(team) %><br>
         Created by: <%= "#{team.user.summoner_name}" %><br>
         <%= "  #{team[:about]}" %></li>
     </div>
