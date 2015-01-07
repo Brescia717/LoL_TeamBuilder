@@ -31,16 +31,19 @@ ActiveRecord::Schema.define(version: 20150103031436) do
     t.datetime "updated_at"
   end
 
-  create_table "teammates_tables", force: true do |t|
-    t.integer "team_id", null: false
-    t.integer "user_id", null: false
-    t.string  "member",  null: false
-
   create_table "stats", force: true do |t|
     t.integer  "user_id",             null: false
     t.integer  "summoner_id",         null: false
     t.string   "lolking_profile_url", null: false
     t.string   "tier",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teammates", force: true do |t|
+    t.integer  "team_id",    null: false
+    t.integer  "owner_id",   null: false
+    t.integer  "member_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
