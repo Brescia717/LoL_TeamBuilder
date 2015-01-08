@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:upvote, :downvote]
+  # around_action :fetch_summoner_id, only: [ :show ]
   require 'httparty'
   def index
   end
@@ -51,8 +52,17 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     return { email: nil } unless params[:user]
     params.require(:user).permit(:email)
+  end
+
+  def fetch_summoner_id
+    binding.pry
+    # if @user == current_user && @user.summoner_id.nil?
+    #   current_user.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{current_user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}").first[1]['id']
+    #   # @user.save
+    # end
   end
 end
