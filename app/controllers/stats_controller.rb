@@ -63,11 +63,11 @@ class StatsController < ApplicationController
     params.require(:stat).permit(:summoner_id, :lolking_profile_url, :tier)
   end
 
-  def summoner_data
-    if current_user?
-      @summoner_data = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{current_user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}")
-    end
-  end
+  # def summoner_data
+  #   if current_user?
+  #     @summoner_data = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{current_user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}")
+  #   end
+  # end
 
   # def lolking_profile_create
   #   @lolking_profile_url = "http://www.lolking.net/summoner/na/#{@stat.summoner_id}"

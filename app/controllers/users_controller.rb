@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   end
 
   def fetch_summoner_id
-    binding.pry
+    # binding.pry
     # if @user == current_user && @user.summoner_id.nil?
     #   current_user.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{current_user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}").first[1]['id']
     #   # @user.save
