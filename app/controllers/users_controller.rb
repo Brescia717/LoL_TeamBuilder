@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:upvote, :downvote]
-  # around_action :fetch_summoner_id, only: [ :show ]
   require 'httparty'
   def index
   end
