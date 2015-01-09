@@ -4,12 +4,24 @@ class TeamsController < ApplicationController
     @team_data = []
     @teams.each do |team|
       @user = User.find(team.user)
-      league_stats = $client.league.get(team.user.summoner_id).first[1][0]
+      @stat = Stat.find(team.user.stat)
+      # league_stats = $client.league.get(team.user.summoner_id).first[1][0]
       id = team.id
-      tier = league_stats.tier
+      tier = @stat.tier
       about = team.about
       creator = team.user.summoner_name
       @team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => @user }
+    end
+    @tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD", 4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
+    ### some logic for setting up eligible teams for current_user ###
+    if current_user && current_user.stat.nil? == false
+      @tier_hash.each do |k,v|
+        if v == current_user.stat.tier
+          @first  = @tier_hash[k-1]
+          @second = @tier_hash[k  ]
+          @third  = @tier_hash[k+1]
+        end
+      end
     end
   end
 
@@ -17,7 +29,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @user = @team.user
     # league_stats = $client.league.get(@team.user.summoner_id).first[1][0]
-    @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
+    # @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
     @comments = @team.comments
     @comment = Comment.new
   end
@@ -80,5 +92,4 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit(:about)
   end
-
 end

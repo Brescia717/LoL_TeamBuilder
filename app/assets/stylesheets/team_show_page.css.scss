@@ -60,32 +60,52 @@ body > div > div > a.button.tiny.edit {
   margin-left: 100px;
 }
 
+#comment-box {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#create-comment-button {
+  text-align: center;
+}
+
+#not-logged-in-comment-button {
+  text-align: center;
+}
+
+
 #edit-delete-comment-buttons {
   margin-left: 100px;
 }
 
 .team-show {
-    background-image: image-url("lol-team.jpg");
+  background: image-url("lol-team.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+    /* background-image: image-url("lol-team.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: relative;
     margin-top: -10px;
     min-height: 700px;
-    width: auto;
-}
-
-#edit-delete-team-buttons > a.button.left.tiny.edit {
-  margin-right: 5px;
-  margin-left: 75px;
-}
-
-#back-button {
-  margin-left: 570px;
+    width: auto; */
 }
 
 #edit-delete-team-buttons {
-  margin-left: 75px;
+  margin-right: 0;
+  margin-left: 0;
 }
+
+/* #back-button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
 
 body > div > div > div.alert-box.notice {
   padding: none;

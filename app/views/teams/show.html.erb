@@ -4,23 +4,25 @@
   <h1 class="panel callout radius" style="text-align: center;">
     <%= link_to "#{@team.user.summoner_name}'s Team", user_path(@team.user) %>
   </h1>
-  <h3><%= @tier %></h3>
+  <h3><%= @team.user.stat.tier %></h3>
   <div class="panel" id="team-show-panel">
     <p>
       <%= @team.about %><br />
       Primary Role: <%= @team.user.primary_role.capitalize %><br />
-      Secondary Role: (<%= @team.user.secondary_role.capitalize %>)
+      Secondary Role: <%= @team.user.secondary_role.capitalize %>
     </p>
   </div>
 </div>
-<div class="row" id="edit-delete-team-buttons">
+<div class="row">
+  <div id="edit-delete-team-buttons">
   <% if current_user == @team.user %>
-    <%= link_to "Edit", edit_team_path(@team), class: "button left tiny edit" %>
+    <%= link_to "Edit", edit_team_path(@team), class: "button tiny edit" %>
     <%= link_to "Delete", team_path(@team),
           method: :delete,
           data: { confirm: 'Are you sure you want to delete this team?' },
           class: "button tiny delete" %><br>
   <% end %>
+  </div>
 </div>
 <hr>
 
@@ -32,7 +34,7 @@
           <div class="title">
             <div class="panel" id="comment">
               <p>
-                Written by: <%= link_to comment.user.summoner_name.capitalize,
+                Written by: <%= link_to comment.user.summoner_name,
                                 user_path(comment.user), class: "user-prof-link" %>
               </p>
               <article class="comment-body">
@@ -75,23 +77,25 @@
           </div>
         <% end %>
 
-          <p>
+          <p id="comment-box">
             <%= f.label :body  %><br>
-            <%= f.text_field :body %>
+            <%= f.text_area :body, rows: '5' %>
           </p>
-
-          <%= f.submit 'Create Comment', class: "button" %>
+          <div id="create-comment-button">
+            <%= f.submit 'Create Comment', class: "button" %>
+          </div>
         <% end %>
       <% end %>
 
+
       <% if !current_user %>
+        <div id="not-logged-in-comment-button">
         <%= link_to 'If you want to leave a comment, please log in.',
             new_user_session_path, class: "button alert center" %>
+          </div>
       <% end %>
-
     </div>
   </div>
-  <hr>
-  <%= link_to "Back", teams_path, class: "button tiny", id: "back-button" %>
+
 </div>
 </div>

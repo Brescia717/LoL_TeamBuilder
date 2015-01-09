@@ -13,14 +13,13 @@
       <div><%= f.label :summoner_name %><br />
       <%= f.text_field :summoner_name %></div>
 
-      <div><%= f.hidden_field :summoner_id, :value => @user.summoner_id %></div>
-      <div><%= f.hidden_field :lolking_profile_url, :value => @user.lolking_profile_url %></div>
-
       <div><%= f.label :primary_role %><br />
-      <%= f.text_field :primary_role %></div>
+      <%= select(:user, :primary_role, [["<Select a role>", nil],["Top", "Top"],["Mid", "Mid"],
+        ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
 
       <div><%= f.label :secondary_role %><br />
-      <%= f.text_field :secondary_role %></div>
+        <%= select(:user, :secondary_role, [["<Select a role>", nil],["Top", "Top"],["Mid", "Mid"],
+        ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
 
       <div><%= f.label :password %> <% if @validatable %>
         <i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />

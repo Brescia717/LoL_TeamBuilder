@@ -60,6 +60,7 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
+    dalli (2.7.2)
     devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -285,6 +286,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   coveralls
+  dalli
   devise
   dotenv-rails
   email_spec
@@ -292,6 +294,7 @@ DEPENDENCIES
   fog
   font-awesome-rails
   foundation-rails
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
   launchy

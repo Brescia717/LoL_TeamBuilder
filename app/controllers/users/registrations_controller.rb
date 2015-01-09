@@ -16,17 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-
     resource_saved = resource.save
     yield resource if block_given?
-    ### URL fetch ###
-    def fetch_summoner_id(summoner_name)
-      # require 'lol'
-      # client = Lol::Client.new(ENV['LOL_API'], {region: 'na'})
-      $client.summoner.by_name(summoner_name).first.id
-    end
-    @user.summoner_id = fetch_summoner_id(@user.summoner_name)
-    @user.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@user.summoner_id}"
 
     if resource_saved
       if resource.active_for_authentication?

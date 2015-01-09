@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:upvote, :downvote]
-
+  require 'httparty'
   def index
   end
 
   def show
     @user = User.find(params[:id])
+    @stat = Stat.new
+    @stats = @user.stat
     @bios = @user.bios
     @bio = Bio.new
-    # league_stats = $client.league.get(@user.summoner_id).first[1][0]
-    @tier = $client.league.get(@user.summoner_id).first[1][0].tier
+    @user_teams = Team.all.where(:user_id => @user.id)
     # @division = league_stats.entries.first.division
     @likes = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
@@ -50,8 +51,10 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     return { email: nil } unless params[:user]
     params.require(:user).permit(:email)
   end
+
 end

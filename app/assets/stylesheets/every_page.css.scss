@@ -15,8 +15,13 @@ body > div > div.alert-box {
 }
 
 /* _nav bar */
+body > div > nav {
+  position: fixed; z-index: 10000;
+}
+
 #welcome-back > a {
   background-color: #008cba !important;
+
 }
 
 body > div > div > ul > li > a {
@@ -24,32 +29,4 @@ body > div > div > ul > li > a {
 }
 
 .header {
-}
-/* user_show_page */
-.user-show {
-    background-image: image-url("woad-ash.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: relative;
-    margin-top: -10px;
-    min-height: 700px;
-    width: auto;
-}
-
-#like-dislike-buttons > a {
-  margin-left:35px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-body > div > div.alert-box.notice {
-  background-color: #D17519;
-  margin-bottom: 0px !important;
-}
-
-hr {
-  clear: both;
-  visibility: hidden;
 }
