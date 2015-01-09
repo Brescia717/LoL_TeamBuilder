@@ -25,7 +25,4 @@ class User < ActiveRecord::Base
   def admin?
     admin == true
   end
-
-  def stats_request
-  end
 end

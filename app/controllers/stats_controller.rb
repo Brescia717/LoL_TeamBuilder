@@ -1,4 +1,5 @@
 class StatsController < ApplicationController
+
   def index
   end
 
@@ -10,6 +11,7 @@ class StatsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @stat = Stat.new(stat_params)
+    # @stats = Stat.create(:user_id => current_user.id, :summoner_id => summoner_data.first[1]['id'], :lolking_profile_url => "http://www.lolking.net/summoner/na/#{}")
     @stat.user = current_user
     @stat.user_id = current_user.id
     @stat.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{@user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}").first[1]['id']
@@ -60,4 +62,5 @@ class StatsController < ApplicationController
   def stat_params
     params.require(:stat).permit(:summoner_id, :lolking_profile_url, :tier)
   end
+
 end
