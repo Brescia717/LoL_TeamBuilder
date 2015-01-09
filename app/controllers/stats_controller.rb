@@ -14,9 +14,6 @@ class StatsController < ApplicationController
     @stats = Stat.create(:user_id => current_user.id, :summoner_id => summoner_data.first[1]['id'], :lolking_profile_url => "http://www.lolking.net/summoner/na/#{}")
     # @stat.user = current_user
     # @stat.user_id = current_user.id
-    # @stat.summoner_id = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{@user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}").first[1]['id']
-    # @stat.lolking_profile_url = "http://www.lolking.net/summoner/na/#{@stat.summoner_id}"
-    # @stat.tier = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@stat.summoner_id}/entry?api_key=#{ENV['LOL_API']}").first[1][0]['tier']
     if @stat.summoner_id != nil && @stat.lolking_profile_url != nil && @stat.tier != nil
       @stat.save
       flash[:success] = "Stats successfully created!"
@@ -63,27 +60,4 @@ class StatsController < ApplicationController
     params.require(:stat).permit(:summoner_id, :lolking_profile_url, :tier)
   end
 
-  # def summoner_data
-  #   if current_user?
-  #     @summoner_data = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{current_user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}")
-  #   end
-  # end
-
-  # def lolking_profile_create
-  #   @lolking_profile_url = "http://www.lolking.net/summoner/na/#{@stat.summoner_id}"
-  # end
-  #
-  # def league_data
-  #   if current_user?
-  #     @league_data = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{current_user.summoner_id}/entry?api_key=#{ENV['LOL_API']}")
-  #   end
-  # end
-  #
-  # def api_request
-  #   if current_user?
-  #     @summoner_data = HTTParty.get("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{@user.summoner_name.gsub(/\s+/, "")}?api_key=#{ENV['LOL_API']}")
-  #     @lolking_profile_url = "http://www.lolking.net/summoner/na/#{@stat.summoner_id}"
-  #     @league_data = HTTParty.get("https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/#{@stat.summoner_id}/entry?api_key=#{ENV['LOL_API']}")
-  #   end
-  # end
 end
