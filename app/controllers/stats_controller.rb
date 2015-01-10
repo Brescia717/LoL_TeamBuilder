@@ -1,6 +1,7 @@
 class StatsController < ApplicationController
 
   def index
+    redirect_to user_path(current_user)
   end
 
   def new
@@ -23,7 +24,7 @@ class StatsController < ApplicationController
       redirect_to @user
     else
       flash[:notice] = "It didn't save, please try again."
-      redirect_to @user
+      render 'users#show'
     end
   end
 
@@ -49,8 +50,8 @@ class StatsController < ApplicationController
       redirect_to user_path(current_user)
     else
       # @stat.update(stat_params)
-      flash[:alert] = "Please try again - save unsuccessfull."
-      redirect_to user_path(current_user)
+      flash[:alert] = "Please try again - update unsuccessfull."
+      render 'users#show'
     end
   end
 

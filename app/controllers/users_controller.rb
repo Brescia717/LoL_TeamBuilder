@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:upvote, :downvote]
-  require 'httparty'
+
   def index
+    redirect_to user_path(current_user)
   end
 
   def show
