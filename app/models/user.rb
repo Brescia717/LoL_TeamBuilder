@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   validates :primary_role, presence: true
   validates :secondary_role, presence: true
 
+  # belongs_to :team
   has_many :teams
   has_many :comments
   has_many :votes
