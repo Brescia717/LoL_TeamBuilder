@@ -9,7 +9,15 @@
     <br><br>
     Click "Find a Team" to see what teams are available!
   </p>
-
-  <p id="find-a-team"><%= link_to "Find a Team", teams_path, class: 'button', id: "find-a-team" %></p>
-
+  <div class="back">
+    <div class="button_base b03_skewed_slide_in">
+      <div>
+        <p><%= link_to "Find a Team", teams_path, class: 'button', id: "fat-before" %></p>
+      </div>
+      <div></div>
+      <div>
+        <p><%= link_to "Find a Team", teams_path, class: 'button', id: "fat-after" %></p>
+      </div>
+    </div>
+  </div>
 </div>
