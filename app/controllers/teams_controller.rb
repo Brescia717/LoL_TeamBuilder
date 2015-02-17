@@ -5,7 +5,6 @@ class TeamsController < ApplicationController
     @teams.each do |team|
       @user = User.find(team.user)
       @stat = Stat.find(team.user.stat)
-      # league_stats = $client.league.get(team.user.summoner_id).first[1][0]
       id = team.id
       tier = @stat.tier
       about = team.about
@@ -28,10 +27,16 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @user = @team.user
-    # league_stats = $client.league.get(@team.user.summoner_id).first[1][0]
-    # @tier = $client.league.get(@team.user.summoner_id).first[1][0].tier
     @comments = @team.comments
     @comment = Comment.new
+
+    if current_user.stat.present?
+      if current_user.stat.tier != @team.user.stat.tier
+        flash[:alert] = "You do not meet the requirements to be on this team!"
+      else
+        true
+      end
+    end
   end
 
   def new
