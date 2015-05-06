@@ -37,11 +37,13 @@
           <div id="edit-delete-bio-buttons">
             <% if @user == current_user %>
               <%= link_to 'Edit', edit_user_bio_path(@user, bio),
-                class: "button tiny edit" %>
+                class: "button tiny edit",
+                id: "update-bio-button" %>
               <%= link_to 'Delete', user_bio_path(@user, bio),
                 method: :delete,
                 data: {confirm: 'Are you sure you want to delete bio?'},
-                class: "button tiny delete" %>
+                class: "button tiny delete",
+                id: "delete-bio-button" %>
             <% end %>
           </div>
         <% end %>
@@ -91,7 +93,7 @@
       </p>
 
       <div id="create-stats-button">
-        <%= f.submit 'Create Stats', class: "button" %>
+        <%= f.submit 'Create Stats', class: "button", id: "create-stats" %>
       </div>
     <% end %>
   <% elsif @user == current_user && @stats.nil? == false %>

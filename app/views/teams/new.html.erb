@@ -10,10 +10,13 @@
     </p>
 
     <hr>
-
-    <%= f.submit 'Create Team', class: "button" %>
+    <div id="create-team">
+      <%= f.submit 'Create Team', class: "button", id: "create-team-button" %>
+    </div>
     <hr>
   <% end %>
 
-  <%= link_to "Back", teams_path, class: "button tiny" %>
+  <div id="back">
+    <%= link_to "Back", teams_path, class: "button tiny", id: "back-button" %>
+  </div>
 </div>

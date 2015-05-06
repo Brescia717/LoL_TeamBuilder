@@ -82,7 +82,7 @@
             <%= f.text_area :body, rows: '5' %>
           </p>
           <div id="create-comment-button">
-            <%= f.submit 'Create Comment', class: "button" %>
+            <%= f.submit 'Create Comment', class: "button", id: "team-comment-button" %>
           </div>
         <% end %>
       <% end %>
@@ -91,7 +91,9 @@
       <% if !current_user %>
         <div id="not-logged-in-comment-button">
         <%= link_to 'If you want to leave a comment, please log in.',
-            new_user_session_path, class: "button alert center" %>
+            new_user_session_path,
+            class: "button alert center",
+            id: "not-logged-in-button" %>
           </div>
       <% end %>
     </div>

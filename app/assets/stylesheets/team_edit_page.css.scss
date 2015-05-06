@@ -1,0 +1,10 @@
+#update-team-button {
+  background-color: #D17519 !important;
+  border-color: #D17519;
+  border-width: 5px;
+  &:hover {
+    background-color: #007095 !important;
+    border-color: gray;
+    border-width: 5px;
+  }
+}

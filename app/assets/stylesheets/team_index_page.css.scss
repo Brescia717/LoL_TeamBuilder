@@ -1,13 +1,19 @@
-body > div > div.row.information > a {
-  margin-left: 400px;
-  background-color: #D17519;
+body > div > div {
+  &.row.information > a {
+    margin-left: 400px;
+    background-color: #D17519;
+  }
+  ul > li {
+    color: gray;
+  }
+  div {
+    h1 {
+      text-align: center;
+      color: white;
+    }
+  }
 }
 
-body > div > div > ul > li {
-  color: gray;
-}
-
-/* body > div > div > div > ul { */
 #team-index-list {
   background-color: #1A354F;
   margin-top: 90px;
@@ -28,15 +34,16 @@ body > div > div > ul > li {
   height: 1100px;
 }
 
-body > div > div > div > h1 {
-  text-align: center;
-  color: white;
-}
-
-body > div > div > div > a.button {
-  /* margin-left: 380px; */
-}
-
 #create-team {
   text-align: center;
+}
+#create-team-button {
+  background-color: #D17519 !important;
+  border-color: #D17519;
+  border-width: 5px;
+  &:hover {
+    background-color: #007095 !important;
+    border-color: gray;
+    border-width: 5px;
+  }
 }
