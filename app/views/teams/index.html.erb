@@ -5,23 +5,23 @@
     <ul id="team-index-list">
       <!-- Displays teams based on user's tier -->
       <% @team_data.each do |team| %>
-        <% if team[:tier] == @first || team[:tier] == @second || team[:tier] == @third %>
+        <% if current_user.nil? || @eligible_teams.include?(team[:tier]) %>
         <div class="panel radius">
-          <li><%= link_to "#{team[:tier]}", team_path(team) %><br>
-            Created by: <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
-          <%= "  #{team[:about]}" %></li>
-        </div>
-        <% elsif current_user == nil %>
-        <div class="panel radius">
-          <li><%= link_to "#{team[:tier]}", team_path(team) %><br>
-            Created by: <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
-            <%= "  #{team[:about]}" %></li>
+          <li>
+            <%= link_to "#{team[:tier]}", team_path(team) %><br>
+            Created by:
+            <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
+            <%= "  #{team[:about]}" %>
+          </li>
         </div>
         <% end %>
       <% end %>
     </ul>
     <div id="create-team">
-      <%= link_to "Create a Team", new_team_path, class: "button", id: "create-team-button" %>
+      <%= link_to "Create a Team",
+                  new_team_path,
+                  class: "button",
+                  id: "create-team-button" %>
     </div>
   </div>
 </div>

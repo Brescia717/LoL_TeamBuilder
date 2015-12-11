@@ -1,13 +1,12 @@
 class TeamsController < ApplicationController
-  before_action :get_team, only: [ :show, :edit, :update, :destroy, :upvote,
-                                   :downvote ]
+  before_action :get_team,
+                  only: [ :show, :edit, :update, :destroy, :upvote, :downvote ]
 
   def index
     @teams = Team.all
-    @user = User.find(team.user)
-    @stat = Stat.find(team.user.stat)
-    @team_data = get_team_data(@teams, @user, @stat)
-    get_eligible_teams  #  Creates @first, @second, and @third
+    @team_data = get_team_data(@teams)
+    @eligible_teams = get_eligible_teams
+    flash[:notice] = "Sorry. There are no teams within your bracket" if @eligible_teams.empty?
   end
 
   def show
@@ -74,29 +73,35 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
-  def get_team_data(teams, user, stat)
+  def get_team_data(teams)
     team_data = []
     teams.each do |team|
       id = team.id
-      tier = stat.tier
+      team_user = team.user
+      user = User.find(team_user)
+      tier = Stat.find(team_user.stat).tier
+      creator = team_user.summoner_name
       about = team.about
-      creator = team.user.summoner_name
-      team_data << { :id => id, :tier => tier, :creator => creator, :about => about, :user => user }
+      team_data << { :id => id, :user => user, :tier => tier,
+                     :creator => creator, :about => about }
     end
     team_data
   end
 
-  # Sets up eligible teams for current user
+  # Sets up eligible teams if current_user
   def get_eligible_teams
-    tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD", 4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
+    eligible_teams = []
     if current_user && current_user.stat.nil? == false
+      tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD",
+                    4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
       tier_hash.each do |k,v|
         if v == current_user.stat.tier
-          @first  = tier_hash[k-1]
-          @second = tier_hash[k  ]
-          @third  = tier_hash[k+1]
+          eligible_teams << [ tier_hash[k-1], tier_hash[k], tier_hash[k+1] ]
         end
       end
+      eligible_teams.flatten! unless eligible_teams.empty?
     end
+    eligible_teams
   end
+
 end
