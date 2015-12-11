@@ -4,16 +4,16 @@
 
   <%= form_for @team do |f| %>
 
-    <p>
-      <%= f.label :about %><br>
-      <%= f.text_field :about %>
-    </p>
+  <p>
+    <%= f.label :about %><br>
+    <%= f.text_field :about %>
+  </p>
 
-    <hr>
-    <div id="create-team">
-      <%= f.submit 'Create Team', class: "button", id: "create-team-button" %>
-    </div>
-    <hr>
+  <hr>
+  <div id="create-team">
+    <%= f.submit 'Create Team', class: "button", id: "create-team-button" %>
+  </div>
+  <hr>
   <% end %>
 
   <div id="back">

@@ -1,20 +1,21 @@
-<div class="team-index"><span style="color: rgba(0,0,0,0)">.</span>
+<div class="team-index">
+  <span style="color: rgba(0,0,0,0)">.</span>
 
   <div class="row information">
     <h1>Featured Teams</h1>
     <ul id="team-index-list">
       <!-- Displays teams based on user's tier -->
       <% @team_data.each do |team| %>
-        <% if current_user.nil? || @eligible_teams.include?(team[:tier]) %>
-        <div class="panel radius">
-          <li>
-            <%= link_to "#{team[:tier]}", team_path(team) %><br>
-            Created by:
-            <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
-            <%= "  #{team[:about]}" %>
-          </li>
-        </div>
-        <% end %>
+      <% if current_user.nil? || @eligible_teams.include?(team[:tier]) %>
+      <div class="panel radius">
+        <li>
+          <%= link_to "#{team[:tier]}", team_path(team) %><br>
+          Created by:
+          <%= link_to "#{team[:creator]}", user_path(team[:user]) %><br>
+          <%= "  #{team[:about]}" %>
+        </li>
+      </div>
+      <% end %>
       <% end %>
     </ul>
     <div id="create-team">
