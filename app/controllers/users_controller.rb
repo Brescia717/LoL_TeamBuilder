@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:upvote, :downvote]
   require 'httparty'
+
   def index
   end
 
   def show
-    @user = User.find(params[:id])
-    @stat = Stat.new
+    @user  = User.find(params[:id])
+    @stat  = Stat.new
     @stats = @user.stat
-    @bios = @user.bios
-    @bio = Bio.new
+    @bios  = @user.bios
+    @bio   = Bio.new
     @user_teams = Team.all.where(:user_id => @user.id)
-    # @division = league_stats.entries.first.division
-    @likes = @user.get_likes.size
+    @likes    = @user.get_likes.size
     @dislikes = @user.get_dislikes.size
     @percentage_likes=
     if @likes > 0
@@ -30,10 +30,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      # flash[:success] = "You have successfully updated your profile."
+      flash[:success] = "You have successfully updated your profile."
       redirect_to user_path(@user)
     else
-      # flash[:alert] = "You need to submit a photo."
       render 'show'
     end
   end
