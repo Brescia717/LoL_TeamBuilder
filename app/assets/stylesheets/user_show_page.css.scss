@@ -23,42 +23,50 @@ ul {
   list-style-type: none;
 }
 
-body > div > div.alert-box.notice {
-  background-color: #D17519;
-  margin-bottom: 0px !important;
-}
-
 hr {
   clear: both;
   visibility: hidden;
 }
 
-body > div > div > aside > h1 {
-  align: center !important;
+body > div > div {
+  aside {
+    h1 {
+      align: center !important;
+    }
+    ul > li.lolking_profile_link > u > a {
+      color: #D9D936;
+      font-style: underline;
+    }
+  }
+  &.alert-box.notice {
+    background-color: #D17519;
+    margin-bottom: 0px !important;
+  }
+  div {
+    a.upvote.button.success.tiny.button:hover {
+      background-color: #36D936 !important;
+    }
+    a.downvote.button.alert.tiny.button:hover {
+      background-color: #FF4040 !important;
+    }
+  }
 }
 
-body > div > div > div > a.upvote.button.success.tiny.button:hover {
-  background-color: #36D936 !important;
+.info-for-vcard {
+  color: #004EBA;
 }
 
-body > div > div > div > a.downvote.button.alert.tiny.button:hover {
-  background-color: #FF4040 !important;
+.vote-score {
+  color: white;
+  margin-left: 35px;
 }
 
-body > div > div > aside > ul > li.lolking_profile_link > u > a {
-  color: #D9D936;
-  font-style: underline;
-}
-.info-for-vcard { color: #004EBA; }
-
-.vote-score { color: white; margin-left: 35px; }
-
-h1 > #user-show-header {
+#user-show-header {
   text-align: center;
 }
 
 #edit-delete-bio-buttons {
-  margin-left: 20px;
+  margin-left: -32px;
 }
 
 #user-teams-header {
@@ -88,17 +96,37 @@ h1 > #user-show-header {
 }
 
 #update-bio-button {
-  background-color: #D17519;
+  background-color: #D17519 !important;
+  &:hover {
+    background-color: #007095 !important;
+  }
 }
 
-#update-bio-button:hover {
-  background-color: #007095;
+#delete-bio-button {
+  background-color: #D17519 !important;
+  &:hover {
+    background-color: #007095 !important;
+  }
+}
+
+#create-stats {
+  background-color: #D17519;
+  border-color: #D17519;
+  border-width: 5px;
+  &:hover {
+    background-color: #007095;
+    border-color: gray;
+    border-width: 5px;
+  }
 }
 
 #update-stats-button {
   background-color: #D17519;
-}
-
-#update-stats-button:hover {
-  background-color: #007095;  
+  border-color: #D17519;
+  border-width: 5px;
+  &:hover {
+    background-color: #007095;
+    border-color: gray;
+    border-width: 5px;
+  }
 }

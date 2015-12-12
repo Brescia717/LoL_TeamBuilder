@@ -9,3 +9,24 @@ body > div > div > h2 {
 body > div > div > form.button_to > div > input.button.tiny{
   background-color: #FF4040 !important;
 }
+
+#update-button {
+  background-color: #D17519;
+  border-color: #D17519;
+  border-width: 5px;
+  &:hover {
+    background-color: #007095;
+    border-color: gray;
+    border-width: 5px;
+  }
+}
+
+#cancel-account-button {
+  background-color: #FF4040 !important;
+  border-width: 5px;
+  border-color: #FF4040;
+  &:hover {
+    background-color: #007095 !important;
+    border-color: gray;
+  }
+}

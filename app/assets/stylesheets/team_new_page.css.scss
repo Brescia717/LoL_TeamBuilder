@@ -1,7 +1,15 @@
-#new_team > button {
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #D17519;
+#back {
+  text-align: center;
+}
+#back-button {
+  background-color: #D17519 !important;
+  border-color: #D17519;
+  border-width: 5px;
+  &:hover {
+    background-color: #007095 !important;
+    border-color: gray;
+    border-width: 5px;
+  }
 }
 
 #new_user > div:nth-child(10) > input {
@@ -10,29 +18,26 @@
   background-color: #D17519;
 }
 
-body > div > div > a.button {
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #D17519;
+body > div > div {
+  a.button {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #D17519;
+  }
+  h1 {
+    color: white;
+    text-align: center;
+    padding-left: auto;
+    padding-right: auto;
+  }
 }
 
-#new_team > input {
-  margin-left: 360px;
-  background-color: #D17519;
-}
-
-body > div > div > h1 {
-  color: white;
-  text-align: center;
-  padding-left: auto;
-  padding-right: auto;
-}
-
-#new_team > p > label {
-  color: white;
-}
-
-#new_team > img.resize {
-  height: 45px;
-  width: 45px;
+#new_team {
+  p > label {
+    color: white;
+  }
+  img.resize {
+    height: 45px;
+    width: 45px;
+  }
 }

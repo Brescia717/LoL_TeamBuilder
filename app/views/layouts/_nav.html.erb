@@ -8,9 +8,10 @@
   <section class="top-bar-section">
     <ul class="right">
       <% if current_user %>
-
-        <li id="welcome-back"><%= link_to "Welcome back #{current_user.username}!", user_path(current_user), class: "button notice" %></li>
-
+        <li><%= link_to "Welcome back #{current_user.username}!",
+          user_path(current_user),
+          class: "button notice",
+          id: "welcome-back-button" %></li>
       <% end %>
       <li><%= link_to "Home", root_path, class: "btn success" %></li>
       <li><%= link_to 'Find Team', teams_path %> </li>
