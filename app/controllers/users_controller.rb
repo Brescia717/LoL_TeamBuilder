@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:upvote, :downvote]
-  require 'httparty'
+  before_action :get_user, except: [:index]
 
   def index
   end
 
   def show
-    @user  = User.find(params[:id])
     @stat  = Stat.new
     @stats = @user.stat
     @bios  = @user.bios
@@ -27,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
 
     if @user.update(user_params)
       flash[:success] = "You have successfully updated your profile."
@@ -38,13 +36,11 @@ class UsersController < ApplicationController
   end
 
   def upvote
-    @user = User.find(params[:id])
     @user.vote_by voter: current_user, vote: 'like'
     redirect_to @user
   end
 
   def downvote
-    @user = User.find(params[:id])
     @user.vote_by voter: current_user, vote: 'bad'
     redirect_to @user
   end
@@ -54,6 +50,10 @@ class UsersController < ApplicationController
   def user_params
     return { email: nil } unless params[:user]
     params.require(:user).permit(:email)
+  end
+
+  def get_user
+    @user = User.find(params[:id])
   end
 
 end
