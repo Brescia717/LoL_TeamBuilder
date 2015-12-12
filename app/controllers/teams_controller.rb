@@ -6,7 +6,6 @@ class TeamsController < ApplicationController
     @teams = Team.all
     @team_data = get_team_data(@teams)
     @eligible_teams = get_eligible_teams
-    flash[:notice] = "Sorry. There are no teams within your bracket" if @eligible_teams.empty?
   end
 
   def show
@@ -76,8 +75,8 @@ class TeamsController < ApplicationController
   def get_team_data(teams)
     team_data = []
     teams.each do |team|
-      id = team.id
       team_user = team.user
+      id = team.id
       user = User.find(team_user)
       tier = Stat.find(team_user.stat).tier
       creator = team_user.summoner_name
@@ -92,7 +91,7 @@ class TeamsController < ApplicationController
   def get_eligible_teams
     eligible_teams = []
     if current_user && current_user.stat.nil? == false
-      tier_hash = { 1 => "BRONZE", 2 => "SILVER", 3 => "GOLD",
+      tier_hash = { 1 => "BRONZE",   2 => "SILVER",  3 => "GOLD",
                     4 => "PLATINUM", 5 => "DIAMOND", 6 => "MASTER" }
       tier_hash.each do |k,v|
         if v == current_user.stat.tier
