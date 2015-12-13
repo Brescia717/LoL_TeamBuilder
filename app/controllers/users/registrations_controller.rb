@@ -23,6 +23,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
+        ### Create Stat for new user; @user now exists as current_user ###
+        @stat = Stat.new
+        @stat.user = @user
+        @stat.save!
+        StatsUpdateWorker.perform_async(@user.summoner_name, @stat.id)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
