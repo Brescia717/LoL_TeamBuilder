@@ -8,9 +8,6 @@ feature "Click on Create a Team" do
     click_on "Find Team"
     click_on "Create a Team"
     fill_in("About", with: team.about)
-    fill_in("Rank", with: team.rank)
-    fill_in("Primary role", with: team.primary_role)
-    fill_in("Secondary role", with: team.secondary_role)
 
     click_on "Create Team"
     expect(page).to have_content("You need to sign in to create a team.")
@@ -30,9 +27,6 @@ feature "Click on Create a Team" do
     expect(page).to have_content("Create a Team")
 
     fill_in("About", with: team.about)
-    fill_in("Rank", with: team.rank)
-    fill_in("Primary role", with: team.primary_role)
-    fill_in("Secondary role", with: team.secondary_role)
     click_on "Create Team"
 
     expect(page).to have_content("#{user.summoner_name}'s Team")

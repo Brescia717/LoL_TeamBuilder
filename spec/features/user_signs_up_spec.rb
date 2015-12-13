@@ -11,7 +11,6 @@ feature "User signs up" do
     fill_in('Summoner name', with: user.summoner_name)
     fill_in('Primary role', with: user.primary_role)
     fill_in('Secondary role', with: user.secondary_role)
-    fill_in('Lolking profile link', with: user.lolking_profile_link)
     fill_in('Password', with: user.password)
     fill_in('Password confirmation', with: user.password)
 

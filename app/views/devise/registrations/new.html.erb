@@ -4,28 +4,28 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
-      <div><%= f.label :email %><br />
+      <div class="devise-form-label"><%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true %></div>
 
-      <div><%= f.label :username %><br />
+      <div class="devise-form-label"><%= f.label :username %><br />
       <%= f.text_field :username %></div>
 
-      <div><%= f.label :summoner_name %><br />
+      <div class="devise-form-label"><%= f.label :summoner_name %><br />
       <%= f.text_field :summoner_name %></div>
 
-      <div><%= f.label :primary_role %><br />
+      <div class="devise-form-label"><%= f.label :primary_role %><br />
       <%= select(:user, :primary_role, [["<Select a role>", nil],["Top", "Top"],["Mid", "Mid"],
         ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
 
-      <div><%= f.label :secondary_role %><br />
+      <div class="devise-form-label"><%= f.label :secondary_role %><br />
         <%= select(:user, :secondary_role, [["<Select a role>", nil],["Top", "Top"],["Mid", "Mid"],
         ["Jungle", "Jungle"],["Marksman", "Marksman"], ["Support", "Support"]]) %></div>
 
-      <div><%= f.label :password %> <% if @validatable %>
+      <div class="devise-form-label"><%= f.label :password %> <% if @validatable %>
         <i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
         <%= f.password_field :password, autocomplete: "off" %></div>
 
-      <div><%= f.label :password_confirmation %><br />
+      <div class="devise-form-label"><%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
       <div><%= f.submit "Sign up", class: "button", id: "sign-up-button" %></div>

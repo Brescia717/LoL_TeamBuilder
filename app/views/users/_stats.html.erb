@@ -1,0 +1,27 @@
+<ul class="panel callout radius">
+  <li class="rank">
+    <% if @stats.present? %>
+    Rank:
+    <tag class="info-for-vcard"><%= "#{@stats.tier}" %></tag>
+    <% end %>
+  </li>
+  <li class="primary_role">
+    Primary Role:
+    <tag class="info-for-vcard"><%= "#{@user.primary_role.capitalize}" %></tag>
+  </li>
+  <li class="secondary_role">
+    Secondary Role:
+    <tag class="info-for-vcard"><%= "#{@user.secondary_role.capitalize}" %></tag>
+  </li>
+  <li class="lolking_profile_link">
+    <% if @stats.present? %>
+    <u><%= link_to "LoLKing Profile", @stats.lolking_profile_url %></u>
+    <% end %>
+  </li>
+  <% if @user == current_user %>
+  <li class="email">
+    Email:
+    <tag class="info-for-vcard"><%= "#{@user.email}" %></tag>
+  </li>
+  <% end %>
+</ul>

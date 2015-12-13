@@ -1,0 +1,4 @@
+<%= form_for [@user, @stats] do |f| %>
+  <%= f.hidden_field :tier %>
+  <%= f.submit "Update", class: "button", id: "update-stats-button" %>
+<% end %>
