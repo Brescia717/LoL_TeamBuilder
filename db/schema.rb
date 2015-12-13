@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20150103031436) do
 
   create_table "stats", force: true do |t|
     t.integer  "user_id",             null: false
-    t.integer  "summoner_id",         null: false
-    t.string   "lolking_profile_url", null: false
-    t.string   "tier",                null: false
+    t.integer  "summoner_id"
+    t.string   "lolking_profile_url"
+    t.string   "tier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
