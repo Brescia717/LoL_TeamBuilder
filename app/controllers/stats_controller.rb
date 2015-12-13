@@ -3,6 +3,9 @@ class StatsController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def new
     @user = current_user
     @stat = Stat.new
@@ -10,16 +13,15 @@ class StatsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
+    @stat = Stat.new(stat_params)
+    @stat.user = @user
     @user_summoner_name = @user.summoner_name
-    @stat         = Stat.new(stat_params)
-    @stat.user    = current_user
-    @stat.user_id = current_user.id
-    summoner_id   = get_summoner_id(@user_summoner_name)
-    @stat.summoner_id = summoner_id
-    @stat.lolking_profile_url = get_lolking_profile_url(summoner_id)
-    @stat.tier = get_summoner_tier(summoner_id)
-    if (@stat.summoner_id && @stat.lolking_profile_url && @stat.tier) != nil
-      @stat.save
+    # summoner_id   = get_summoner_id(@user_summoner_name)
+    # @stat.summoner_id = summoner_id
+    # @stat.lolking_profile_url = get_lolking_profile_url(summoner_id)
+    # @stat.tier = get_summoner_tier(summoner_id)
+    if @stat.save
+      StatsUpdateWorker.perform_async(@user_summoner_name, @stat.id)
       flash[:success] = "Stats successfully created!"
       redirect_to @user
     else
@@ -34,28 +36,27 @@ class StatsController < ApplicationController
 
   def update
     @stat = Stat.find(params[:id])
-    cache = ActiveSupport::Cache::MemoryStore.new
-    request_tier = get_summoner_tier(@stat.summoner_id)
-    cache.write("current_tier", request_tier)
-    current_tier = cache.fetch("current_tier")
+    up_to_date = ( (@stat.updated_at + 1.hour) > Time.now.utc )
 
-    if current_tier.present? && current_tier != @stat.tier
-      @stat.update(stat_params)
-      @stat.update_attributes({:tier => current_tier})
-      flash[:success] = "You have successfully updated your stats."
+    if up_to_date == true
+      flash[:alert] = "Stats can only be updated once per hour."
       redirect_to user_path(@stat.user)
-    elsif current_tier.present? && current_tier == @stat.tier
-      @stat.update(stat_params)
-      flash[:notice] = "Everything is up-to-date."
-      redirect_to user_path(current_user)
+    elsif up_to_date == false
+      cache = ActiveSupport::Cache::MemoryStore.new
+      request_tier = get_summoner_tier(@stat.summoner_id)
+      cache.write("current_tier", request_tier)
+      current_tier = cache.fetch("current_tier")
+      if @stat.tier != current_tier
+        @stat.update_attributes({ tier: current_tier })
+        flash[:success] = "Stats update successful!"
+      else
+        flash[:notice] = "Stats have not changed and are up-to-date"
+      end
+      redirect_to user_path(@stat.user)
     else
-      # @stat.update(stat_params)
       flash[:alert] = "Please try again - save unsuccessfull."
-      redirect_to user_path(current_user)
+      redirect_to user_path(@stat.user)
     end
-  end
-
-  def show
   end
 
   private
