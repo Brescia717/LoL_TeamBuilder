@@ -16,10 +16,7 @@ class StatsController < ApplicationController
     @stat = Stat.new(stat_params)
     @stat.user = @user
     @user_summoner_name = @user.summoner_name
-    # summoner_id   = get_summoner_id(@user_summoner_name)
-    # @stat.summoner_id = summoner_id
-    # @stat.lolking_profile_url = get_lolking_profile_url(summoner_id)
-    # @stat.tier = get_summoner_tier(summoner_id)
+
     if @stat.save
       StatsUpdateWorker.perform_async(@user_summoner_name, @stat.id)
       flash[:success] = "Stats successfully created!"
@@ -42,10 +39,7 @@ class StatsController < ApplicationController
       flash[:alert] = "Stats can only be updated once per hour."
       redirect_to user_path(@stat.user)
     elsif up_to_date == false
-      cache = ActiveSupport::Cache::MemoryStore.new
-      request_tier = get_summoner_tier(@stat.summoner_id)
-      cache.write("current_tier", request_tier)
-      current_tier = cache.fetch("current_tier")
+      current_tier = check_current_tier
       if @stat.tier != current_tier
         @stat.update_attributes({ tier: current_tier })
         flash[:success] = "Stats update successful!"
@@ -75,5 +69,13 @@ class StatsController < ApplicationController
 
   def get_lolking_profile_url(summoner_id)
     "http://www.lolking.net/summoner/na/#{summoner_id}"
+  end
+
+  def check_current_tier
+    cache = ActiveSupport::Cache::MemoryStore.new
+    request_tier = get_summoner_tier(@stat.summoner_id)
+    cache.write("current_tier", request_tier)
+    current_tier = cache.fetch("current_tier")
+    return current_tier
   end
 end
