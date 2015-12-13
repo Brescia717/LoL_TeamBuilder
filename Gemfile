@@ -53,6 +53,7 @@ gem 'unicorn'
 gem 'rails_12factor', group: :production
 gem 'dalli'
 gem 'httparty'
+gem 'sidekiq'
 gem 'jquery-ui-rails'
 # gem 'semantic-ui-rails'
 # gem 'semantic-ui-sass', '~> 0.16.1.0'
